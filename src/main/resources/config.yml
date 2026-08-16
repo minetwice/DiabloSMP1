@@ -1,0 +1,412 @@
+plugin:
+  prefix: "<gradient:#FF5555:#AA0000>DiabloSMP</gradient> <gray>»</gray> "
+  debug: false
+  check-updates: false
+
+settings:
+  enabled-worlds: []
+  blacklist-mode: false
+  allow-cast-in-creative: false
+  allow-cast-in-spectator: false
+  friendly-fire: false
+  protect-caster-fall-damage: true
+  max-concurrent-casts-per-player: 1
+  global-cast-limit: 80
+
+casting:
+  right-click-enabled: true
+  allow-empty-hand: true
+  allow-any-item: false
+  sneak-right-click-open-menu: true
+  blocked-materials:
+    - CHEST
+    - ENDER_CHEST
+    - FURNACE
+    - HOPPER
+    - BARREL
+    - CRAFTING_TABLE
+    - ANVIL
+    - LEVER
+    - STONE_BUTTON
+    - OAK_BUTTON
+    - DARK_OAK_BUTTON
+    - SPRUCE_BUTTON
+    - BIRCH_BUTTON
+    - JUNGLE_BUTTON
+    - ACACIA_BUTTON
+    - MANGROVE_BUTTON
+    - CHERRY_BUTTON
+    - BAMBOO_BUTTON
+    - CRIMSON_BUTTON
+    - WARPED_BUTTON
+    - POLISHED_BLACKSTONE_BUTTON
+
+hud:
+  enabled: true
+  update-interval-ticks: 4
+  use-resource-pack-hud: true
+  fallback-actionbar: true
+  show-all-cooldowns: false
+  priority: ACTIVE_THEN_LONGEST
+  no-stone-text: "<gray>No Diablo Stone</gray>"
+  ready-text: "<red>READY</red>"
+  cooldown-format: "<color:#FF5555>{stone}</color> <color:#AAAAAA>{bar}</color> {seconds}s"
+
+first-join:
+  enabled: true
+  mode: CHOOSE_ONE # CHOOSE_ONE, RANDOM_ONE, NONE
+  broadcast: false
+  message: "<gradient:#FF5555:#AA0000>Welcome to DiabloSMP. Choose your first Diablo Stone.</gradient>"
+
+targeting:
+  players: true
+  hostile-mobs: true
+  neutral-mobs: false
+  passive-mobs: false
+  armor-stands: false
+  display-entities: false
+  ignore-creative: true
+  ignore-spectator: true
+  ignore-npcs: true
+  max-targets-hard-cap: 60
+
+damage:
+  use-custom-death-messages: true
+  pvp-check: true
+  mob-damage: true
+  self-damage: false
+  knockback-multiplier: 1.0
+  invulnerability-ticks: 10
+
+performance:
+  particle-quality: HIGH
+  max-display-entities-per-cast: 40
+  display-entity-lifetime-ticks: 200
+  cleanup-interval-ticks: 100
+
+storage:
+  type: FLATFILE # FLATFILE or SQLITE
+  save-interval-seconds: 300
+
+stones:
+  item-mode: false
+  soulbound: true
+  prevent-drop: true
+  prevent-trade: true
+  prevent-container: true
+  types:
+    SHARD:
+      enabled: true
+      display-name: "<color:#55FFFF>Diablo Shard</color>"
+      description:
+        - "<gray>Summon 5 corrupted azure shards,"
+        - "<gray>lock enemies in front, then smash them.</gray>"
+      cooldown-seconds: 18
+      damage:
+        direct: 14.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: CONE
+        radius: 12.0
+        angle: 90
+        max-targets: 8
+      custom-model-data: 1001
+      material: AMETHYST_SHARD
+      sounds:
+        cast: ENTITY_ENDER_DRAGON_FLAP
+        charge: BLOCK_AMETHYST_CHIME
+        impact: ENTITY_GENERIC_EXPLODE
+
+    EMBER:
+      enabled: true
+      display-name: "<color:#FF3300>Diablo Ember</color>"
+      description:
+        - "<gray>Form a hellfire crimson ring,"
+        - "<gray>launch 6 meteor fangs onto enemies.</gray>"
+      cooldown-seconds: 22
+      damage:
+        direct: 12.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 8.0
+        max-targets: 10
+      custom-model-data: 1002
+      material: FIRE_CHARGE
+      sounds:
+        cast: ITEM_FIRECHARGE_USE
+        charge: BLOCK_FIRE_AMBIENT
+        impact: ENTITY_DRAGON_FIREBALL_EXPLODE
+
+    HALO:
+      enabled: true
+      display-name: "<color:#FFD700>Diablo Halo</color>"
+      description:
+        - "<gray>Rays of corrupted solar light radiate,</gray>"
+        - "<gray>summoning holy pillars on target heads.</gray>"
+      cooldown-seconds: 26
+      damage:
+        direct: 13.0
+        fallback-aoe: 6.0
+      targeting:
+        shape: RADIUS
+        radius: 9.0
+        max-targets: 12
+      custom-model-data: 1003
+      material: NETHER_STAR
+      sounds:
+        cast: BLOCK_BEACON_ACTIVATE
+        charge: BLOCK_BELL_RESONATE
+        impact: ENTITY_LIGHTNING_BOLT_THUNDER
+
+    ROOT:
+      enabled: true
+      display-name: "<color:#55FF55>Diablo Root</color>"
+      description:
+        - "<gray>Corrupted nature vines trap enemies,</gray>"
+        - "<gray>immobilizing them before a leaf storm burst.</gray>"
+      cooldown-seconds: 24
+      damage:
+        direct: 10.0
+        fallback-aoe: 5.0
+      targeting:
+        shape: RADIUS
+        radius: 7.0
+        max-targets: 12
+      custom-model-data: 1004
+      material: VINE
+      sounds:
+        cast: BLOCK_AZALEA_LEAVES_BREAK
+        charge: ENTITY_PLAYER_ATTACK_CRIT
+        impact: BLOCK_GRASS_BREAK
+
+    VOID:
+      enabled: true
+      display-name: "<color:#AA00AA>Diablo Void</color>"
+      description:
+        - "<gray>Open a rift to pull enemies into a core</gray>"
+        - "<gray>that violently implodes into void dust.</gray>"
+      cooldown-seconds: 30
+      damage:
+        direct: 15.0
+        fallback-aoe: 10.0
+      targeting:
+        shape: RADIUS
+        radius: 8.0
+        max-targets: 14
+      custom-model-data: 1005
+      material: ECHO_SHARD
+      sounds:
+        cast: BLOCK_PORTAL_TRIGGER
+        charge: ENTITY_ENDERMAN_TELEPORT
+        impact: ENTITY_ENDER_DRAGON_GROWL
+
+    FROST:
+      enabled: true
+      display-name: "<color:#00FFFF>Diablo Frost</color>"
+      description:
+        - "<gray>Erupt dark frost spikes beneath enemies</gray>"
+        - "<gray>and freeze them in place.</gray>"
+      cooldown-seconds: 20
+      damage:
+        direct: 11.0
+        fallback-aoe: 6.0
+      targeting:
+        shape: RADIUS
+        radius: 8.0
+        max-targets: 12
+      custom-model-data: 1006
+      material: PACKED_ICE
+      sounds:
+        cast: BLOCK_GLASS_BREAK
+        charge: BLOCK_POWDER_SNOW_BREAK
+        impact: ENTITY_PLAYER_HURT_FREEZE
+
+    STORM:
+      enabled: true
+      display-name: "<color:#FFFF55>Diablo Storm</color>"
+      description:
+        - "<gray>Unleash chained lightning arcs across</gray>"
+        - "<gray>multiple nearby enemy hosts.</gray>"
+      cooldown-seconds: 28
+      damage:
+        direct: 9.0
+        fallback-aoe: 7.0
+      targeting:
+        shape: RADIUS
+        radius: 10.0
+        max-targets: 6
+      custom-model-data: 1007
+      material: LIGHTNING_ROD
+      sounds:
+        cast: ITEM_TRIDENT_THUNDER
+        charge: BLOCK_COPPER_BULB_TURN_ON
+        impact: ENTITY_LIGHTNING_BOLT_IMPACT
+
+    BLOOD:
+      enabled: true
+      display-name: "<color:#FF0000>Diablo Blood</color>"
+      description:
+        - "<gray>Summon crescent blood scythes to slash</gray>"
+        - "<gray>enemies and siphon 30% lifesteal heal.</gray>"
+      cooldown-seconds: 32
+      damage:
+        direct: 12.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 9.0
+        max-targets: 10
+      custom-model-data: 1008
+      material: REDSTONE
+      sounds:
+        cast: ENTITY_BAT_TAKEOFF
+        charge: ITEM_ARMOR_EQUIP_CHAIN
+        impact: ENTITY_PLAYER_ATTACK_SWEEP
+
+    SERAPH:
+      enabled: true
+      display-name: "<color:#FFAA00>Diablo Seraph</color>"
+      description:
+        - "<gray>Unfold corrupted angel wings and rain</gray>"
+        - "<gray>homing feather blades, ending with a wing slam.</gray>"
+      cooldown-seconds: 24
+      damage:
+        direct: 8.0
+        fallback-aoe: 12.0
+      targeting:
+        shape: RADIUS
+        radius: 10.0
+        max-targets: 15
+      custom-model-data: 1009
+      material: FEATHER
+      sounds:
+        cast: ENTITY_PHANTOM_FLAP
+        charge: BLOCK_AMETHYST_BLOCK_CHIME
+        impact: ENTITY_GENERIC_EXPLODE
+
+    GRAVE:
+      enabled: true
+      display-name: "<color:#550055>Diablo Grave</color>"
+      description:
+        - "<gray>Summon a heavy obsidian gravity core</gray>"
+        - "<gray>to drag enemies and burst obsidian pillars.</gray>"
+      cooldown-seconds: 35
+      damage:
+        direct: 16.0
+        fallback-aoe: 10.0
+      targeting:
+        shape: RADIUS
+        radius: 7.0
+        max-targets: 12
+      custom-model-data: 1010
+      material: OBSIDIAN
+      sounds:
+        cast: BLOCK_RESPAWN_ANCHOR_CHARGE
+        charge: BLOCK_ANVIL_USE
+        impact: ENTITY_WITHER_SPAWN
+
+    MIRAGE:
+      enabled: true
+      display-name: "<color:#00AAAA>Diablo Mirage</color>"
+      description:
+        - "<gray>Create 4 phantom clones that dash through</gray>"
+        - "<gray>enemies in rapid succession.</gray>"
+      cooldown-seconds: 26
+      damage:
+        direct: 6.0
+        fallback-aoe: 10.0
+      targeting:
+        shape: RADIUS
+        radius: 10.0
+        max-targets: 12
+      custom-model-data: 1011
+      material: PHANTOM_MEMBRANE
+      sounds:
+        cast: ENTITY_VEX_CHARGE
+        charge: ITEM_ELYTRA_FLYING
+        impact: ENTITY_PLAYER_ATTACK_KNOCKBACK
+
+    LANCE:
+      enabled: true
+      display-name: "<color:#FFAA00>Diablo Lance</color>"
+      description:
+        - "<gray>Charge and fire a high-velocity comet beam</gray>"
+        - "<gray>piercing through a straight line of targets.</gray>"
+      cooldown-seconds: 30
+      damage:
+        direct: 18.0
+        fallback-aoe: 10.0
+      targeting:
+        shape: LINE
+        radius: 16.0
+        max-targets: 20
+      custom-model-data: 1012
+      material: BLAZE_ROD
+      sounds:
+        cast: ITEM_FIRECHARGE_USE
+        charge: BLOCK_CONDUIT_ACTIVATE
+        impact: ENTITY_GENERIC_EXPLODE
+
+    ABYSS:
+      enabled: true
+      display-name: "<color:#0000AA>Diablo Abyss</color>"
+      description:
+        - "<gray>Summon an abyssal tide that pulls targets</gray>"
+        - "<gray>into a crushing oceanic surge.</gray>"
+      cooldown-seconds: 28
+      damage:
+        direct: 13.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 8.0
+        max-targets: 12
+      custom-model-data: 1013
+      material: PRISMARINE_SHARD
+      sounds:
+        cast: ITEM_BUCKET_EMPTY
+        charge: ENTITY_DROWNED_AMBIENT
+        impact: ENTITY_GENERIC_SPLASH
+
+    CHRONO:
+      enabled: true
+      display-name: "<color:#AACC00>Diablo Chrono</color>"
+      description:
+        - "<gray>Construct a time field slowing enemies</gray>"
+        - "<gray>before shattering time itself for massive damage.</gray>"
+      cooldown-seconds: 40
+      damage:
+        direct: 14.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 9.0
+        max-targets: 14
+      custom-model-data: 1014
+      material: CLOCK
+      sounds:
+        cast: BLOCK_NOTE_BLOCK_CHIME
+        charge: BLOCK_CONDUIT_AMBIENT
+        impact: BLOCK_GLASS_BREAK
+
+    OMEGA:
+      enabled: true
+      display-name: "<gradient:#FF0000:#FFFFFF:#000000>Diablo Omega</gradient>"
+      description:
+        - "<gray>The ultimate Diablo requiem. Levitate with 12 wings,</gray>"
+        - "<gray>raining 15 light swords ending in a massive explosion.</gray>"
+      cooldown-seconds: 90
+      damage:
+        direct: 20.0
+        fallback-aoe: 16.0
+      targeting:
+        shape: RADIUS
+        radius: 14.0
+        max-targets: 30
+      custom-model-data: 1015
+      material: DRAGON_EGG
+      sounds:
+        cast: UI_TOAST_CHALLENGE_COMPLETE
+        charge: ENTITY_WITHER_DEATH
+        impact: ENTITY_GENERIC_EXPLODE
