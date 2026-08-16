@@ -1,0 +1,175 @@
+plugin:
+  prefix: "<gradient:#FF5555:#AA0000>DiabloSMP</gradient> <gray>»</gray> "
+  debug: false
+
+settings:
+  enabled-worlds: []
+  blacklist-mode: false
+  allow-cast-in-creative: false
+  allow-cast-in-spectator: false
+  friendly-fire: false
+  protect-caster-fall-damage: true
+  max-concurrent-casts-per-player: 1
+  global-cast-limit: 80
+
+casting:
+  right-click-enabled: true
+  allow-empty-hand: true
+  allow-any-item: false
+  sneak-right-click-open-menu: true
+  blocked-materials:
+    - CHEST
+    - ENDER_CHEST
+    - FURNACE
+    - HOPPER
+    - BARREL
+    - CRAFTING_TABLE
+    - ANVIL
+    - LEVER
+    - STONE_BUTTON
+
+hud:
+  enabled: true
+  update-interval-ticks: 4
+  use-custom-font-hud: true
+  font-key: "diablosmp:diablo_hud"
+  no-stone-text: "<gray>No Diablo Stone Absorbed</gray>"
+  ready-text: "<red>READY</red>"
+  cooldown-format: "{stone_icon} {bar} <gray>{seconds}s</gray>"
+
+first-join:
+  enabled: true
+  mode: CHOOSE_ONE
+  broadcast: false
+  message: "<gradient:#FF5555:#AA0000>Welcome to DiabloSMP! Choose your first Diablo Stone physical item.</gradient>"
+
+targeting:
+  players: true
+  hostile-mobs: true
+  neutral-mobs: false
+  passive-mobs: false
+  armor-stands: false
+  ignore-creative: true
+  ignore-spectator: true
+  max-targets-hard-cap: 60
+
+damage:
+  use-custom-death-messages: true
+  pvp-check: true
+  mob-damage: true
+  self-damage: false
+  knockback-multiplier: 1.0
+  invulnerability-ticks: 10
+
+storage:
+  type: FLATFILE # FLATFILE or SQLITE
+  save-interval-seconds: 300
+
+stones:
+  item-mode: true
+  soulbound: true
+  prevent-drop: true
+  prevent-trade: true
+  prevent-container: true
+  types:
+    FROST:
+      enabled: true
+      display-name: "<color:#00FFFF>Diablo Frost</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Hover in air, summon 5 rotating ice cubes, and erupt ground ice spikes.</gray>"
+      cooldown-seconds: 30
+      damage:
+        direct: 12.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: CONE
+        radius: 15.0
+        max-targets: 10
+      custom-model-data: 1001
+      material: PACKED_ICE
+
+    MIRAGE:
+      enabled: true
+      display-name: "<color:#00AAAA>Diablo Mirage</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Enter shadow slash state, blinks to targets with high-speed strikes.</gray>"
+      cooldown-seconds: 25
+      damage:
+        direct: 6.0
+        fallback-aoe: 10.0
+      targeting:
+        shape: RADIUS
+        radius: 15.0
+        max-targets: 12
+      custom-model-data: 1002
+      material: PHANTOM_MEMBRANE
+
+    QUAKE:
+      enabled: true
+      display-name: "<color:#8B4513>Diablo Quake</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Punch the ground to lift real terrain blocks, launch at enemies, and restore.</gray>"
+      cooldown-seconds: 30
+      damage:
+        direct: 12.0
+        fallback-aoe: 6.0
+      targeting:
+        shape: RADIUS
+        radius: 12.0
+        max-targets: 10
+      custom-model-data: 1003
+      material: COBBLESTONE
+
+    HELLGATE:
+      enabled: true
+      display-name: "<color:#FF3300>Diablo Hellgate</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Summon 3 hellgates, chain drag enemies, lava prison, and demon claw slam.</gray>"
+      cooldown-seconds: 45
+      damage:
+        direct: 16.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 10.0
+        max-targets: 8
+      custom-model-data: 1004
+      material: NETHER_BRICK
+
+    VERTIGO:
+      enabled: true
+      display-name: "<color:#AA00AA>Diablo Vertigo</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Expanding gravity wave lifts enemies upside-down and slams them to the ground.</gray>"
+      cooldown-seconds: 30
+      damage:
+        direct: 12.0
+        fallback-aoe: 6.0
+      targeting:
+        shape: RADIUS
+        radius: 12.0
+        max-targets: 10
+      custom-model-data: 1005
+      material: AMETHYST_SHARD
+
+    MARIONETTE:
+      enabled: true
+      display-name: "<color:#FF0000>Diablo Marionette</color>"
+      description:
+        - "<gray>Right-click to ABSORB into your soul.</gray>"
+        - "<gray>Tether enemies with crimson strings, perform pull, side slam, collision & snap.</gray>"
+      cooldown-seconds: 40
+      damage:
+        direct: 10.0
+        fallback-aoe: 8.0
+      targeting:
+        shape: RADIUS
+        radius: 12.0
+        max-targets: 6
+      custom-model-data: 1006
+      material: REDSTONE

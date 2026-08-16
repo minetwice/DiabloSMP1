@@ -1,0 +1,28 @@
+name: DiabloSMP
+version: '${version}'
+main: com.diablosmp.plugin.DiabloSMP
+api-version: '1.21'
+author: DiabloSMP Team
+description: Cinematic Diablo Stones ability plugin with custom boss skills, HUD, and soulbound progression.
+commands:
+  diablosmp:
+    description: Main DiabloSMP command
+    aliases: [diablo, ds, dstones]
+    permission: diablosmp.use
+permissions:
+  diablosmp.use:
+    description: Allows access to player commands and GUI.
+    default: true
+  diablosmp.cast:
+    description: Allows casting Diablo Stone abilities.
+    default: true
+  diablosmp.admin:
+    description: Grants full administrative access to DiabloSMP commands.
+    default: op
+  diablosmp.bypasscooldown:
+    description: Bypasses Diablo Stone ability cooldowns.
+    default: op
+  diablosmp.receive.firstjoin:
+    description: Allows player to receive first-join Diablo Stone selection menu.
+    default: true
+softdepend: [ProtocolLib, WorldGuard, PlaceholderAPI, ModelEngine]

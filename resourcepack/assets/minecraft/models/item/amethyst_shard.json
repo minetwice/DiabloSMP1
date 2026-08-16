@@ -1,0 +1,23 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "item/amethyst_shard"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1001 }, "model": "diablosmp:item/diablo_shard" },
+    { "predicate": { "custom_model_data": 1002 }, "model": "diablosmp:item/diablo_ember" },
+    { "predicate": { "custom_model_data": 1003 }, "model": "diablosmp:item/diablo_halo" },
+    { "predicate": { "custom_model_data": 1004 }, "model": "diablosmp:item/diablo_root" },
+    { "predicate": { "custom_model_data": 1005 }, "model": "diablosmp:item/diablo_void" },
+    { "predicate": { "custom_model_data": 1006 }, "model": "diablosmp:item/diablo_frost" },
+    { "predicate": { "custom_model_data": 1007 }, "model": "diablosmp:item/diablo_storm" },
+    { "predicate": { "custom_model_data": 1008 }, "model": "diablosmp:item/diablo_blood" },
+    { "predicate": { "custom_model_data": 1009 }, "model": "diablosmp:item/diablo_seraph" },
+    { "predicate": { "custom_model_data": 1010 }, "model": "diablosmp:item/diablo_grave" },
+    { "predicate": { "custom_model_data": 1011 }, "model": "diablosmp:item/diablo_mirage" },
+    { "predicate": { "custom_model_data": 1012 }, "model": "diablosmp:item/diablo_lance" },
+    { "predicate": { "custom_model_data": 1013 }, "model": "diablosmp:item/diablo_abyss" },
+    { "predicate": { "custom_model_data": 1014 }, "model": "diablosmp:item/diablo_chrono" },
+    { "predicate": { "custom_model_data": 1015 }, "model": "diablosmp:item/diablo_omega" }
+  ]
+}
