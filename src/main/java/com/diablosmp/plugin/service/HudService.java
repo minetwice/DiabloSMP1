@@ -4,18 +4,28 @@ import com.diablosmp.plugin.DiabloSMP;
 import com.diablosmp.plugin.config.StoneConfig;
 import com.diablosmp.plugin.model.DiabloStoneType;
 import com.diablosmp.plugin.model.PlayerData;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HudService {
     private final DiabloSMP plugin;
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
+    private final Key hudFontKey = Key.key("diablosmp", "diablo_hud");
     private BukkitTask hudTask;
+
+    // Mapping Private Use Area Unicode characters for Custom Font HUD
+    private static final String ICON_NO_STONE = "\uE000";
+    private static final String BAR_FILLED = "\uE101";
+    private static final String BAR_EMPTY = "\uE102";
 
     public HudService(DiabloSMP plugin) {
         this.plugin = plugin;
@@ -53,75 +63,59 @@ public class HudService {
         DiabloStoneType activeStone = data.getActiveStone();
         CooldownService cooldownService = plugin.getCooldownService();
 
-        StringBuilder barBuilder = new StringBuilder();
+        Component finalHud;
 
-        // 1. Cooldown / Active Stone status section
         if (activeStone == null) {
-            String noStoneText = plugin.getConfig().getString("hud.no-stone-text", "<gray>No Diablo Stone</gray>");
-            barBuilder.append(noStoneText);
+            Component emptyIcon = Component.text(ICON_NO_STONE).font(hudFontKey);
+            Component noStoneLabel = miniMessage.deserialize(plugin.getConfig().getString("hud.no-stone-text", "<gray>No Diablo Stone Absorbed</gray>"));
+            finalHud = Component.empty().append(emptyIcon).append(Component.space()).append(noStoneLabel);
         } else {
             StoneConfig stoneConfig = plugin.getConfigManager().getStoneConfig(activeStone);
-            String stoneDisplayName = stoneConfig != null ? stoneConfig.getDisplayName() : activeStone.getDefaultDisplayName();
+            String stoneChar = getStoneFontChar(activeStone);
+            Component stoneIconComponent = Component.text(stoneChar).font(hudFontKey);
+
             double remainingSeconds = cooldownService.getRemainingSeconds(player, activeStone);
 
             if (remainingSeconds <= 0.0) {
-                String readyText = plugin.getConfig().getString("hud.ready-text", "<red>READY</red>");
-                barBuilder.append(stoneDisplayName).append(" ").append(readyText);
+                Component readyLabel = miniMessage.deserialize(plugin.getConfig().getString("hud.ready-text", "<red>READY</red>"));
+                finalHud = Component.empty().append(stoneIconComponent).append(Component.space()).append(readyLabel);
             } else {
                 double totalCd = stoneConfig != null ? stoneConfig.getCooldownSeconds() : 20.0;
                 double fraction = Math.max(0.0, Math.min(1.0, 1.0 - (remainingSeconds / totalCd)));
                 int totalBars = 10;
                 int filledBars = (int) Math.round(fraction * totalBars);
 
-                StringBuilder progress = new StringBuilder("<color:#FF5555>");
+                StringBuilder barChars = new StringBuilder();
                 for (int i = 0; i < totalBars; i++) {
-                    if (i == filledBars) {
-                        progress.append("</color><color:#AAAAAA>");
+                    if (i < filledBars) {
+                        barChars.append(BAR_FILLED);
+                    } else {
+                        barChars.append(BAR_EMPTY);
                     }
-                    progress.append("▰");
                 }
-                progress.append("</color>");
 
-                String cdFormat = plugin.getConfig().getString("hud.cooldown-format", "<color:#FF5555>{stone}</color> {bar} {seconds}s");
-                String formatted = cdFormat
-                        .replace("{stone}", stoneDisplayName)
-                        .replace("{bar}", progress.toString())
-                        .replace("{seconds}", String.format("%.1f", remainingSeconds));
-                barBuilder.append(formatted);
+                Component cooldownBarComponent = Component.text(barChars.toString()).font(hudFontKey);
+                Component secondsComponent = Component.text(String.format(" %.1fs", remainingSeconds), NamedTextColor.GRAY);
+
+                finalHud = Component.empty()
+                        .append(stoneIconComponent)
+                        .append(Component.space())
+                        .append(cooldownBarComponent)
+                        .append(secondsComponent);
             }
         }
 
-        // 2. Diablo Fragments section (15 Diablo Stone Slots above XP level)
-        barBuilder.append("  <gray>|</gray> ");
-        for (DiabloStoneType type : DiabloStoneType.values()) {
-            boolean owned = data.hasStone(type);
-            boolean isActive = (activeStone == type);
-            boolean onCd = cooldownService.isOnCooldown(player, type);
+        // Send via Adventure API Action Bar to render above XP level
+        player.sendActionBar(finalHud);
+    }
 
-            if (!owned) {
-                barBuilder.append("<color:#555555>◇</color>");
-            } else if (isActive) {
-                if (onCd) {
-                    barBuilder.append("<color:#FF5555>◆</color>");
-                } else {
-                    barBuilder.append("<color:#00FF00>◆</color>");
-                }
-            } else {
-                if (onCd) {
-                    barBuilder.append("<color:#880000>◆</color>");
-                } else {
-                    barBuilder.append("<color:").append(type.getColorHex()).append(">◆</color>");
-                }
-            }
-        }
-
-        String hudText = barBuilder.toString();
-        Component component = miniMessage.deserialize(hudText);
-        // Continuously send action bar so it stays permanently visible above XP level
-        player.sendActionBar(component);
+    private String getStoneFontChar(DiabloStoneType type) {
+        int ordinal = type.ordinal(); // 0 to 14
+        char puaChar = (char) (0xE001 + ordinal);
+        return String.valueOf(puaChar);
     }
 
     public void removePlayer(UUID uuid) {
-        // Cleanup tracking if any
+        // No-op cleanup
     }
 }
