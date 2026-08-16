@@ -5,12 +5,16 @@ import com.diablosmp.plugin.ability.impl.*;
 import com.diablosmp.plugin.model.DiabloStoneType;
 import org.bukkit.entity.Player;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AbilityManager {
     private final DiabloSMP plugin;
     private final Map<DiabloStoneType, DiabloAbility> abilities = new EnumMap<>(DiabloStoneType.class);
+    private final Set<AbilityCast> activeCasts = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     public AbilityManager(DiabloSMP plugin) {
         this.plugin = plugin;
@@ -18,21 +22,12 @@ public class AbilityManager {
     }
 
     private void registerAbilities() {
-        abilities.put(DiabloStoneType.SHARD, new ShardAbility(plugin));
-        abilities.put(DiabloStoneType.EMBER, new EmberAbility(plugin));
-        abilities.put(DiabloStoneType.HALO, new HaloAbility(plugin));
-        abilities.put(DiabloStoneType.ROOT, new RootAbility(plugin));
-        abilities.put(DiabloStoneType.VOID, new VoidAbility(plugin));
         abilities.put(DiabloStoneType.FROST, new FrostAbility(plugin));
-        abilities.put(DiabloStoneType.STORM, new StormAbility(plugin));
-        abilities.put(DiabloStoneType.BLOOD, new BloodAbility(plugin));
-        abilities.put(DiabloStoneType.SERAPH, new SeraphAbility(plugin));
-        abilities.put(DiabloStoneType.GRAVE, new GraveAbility(plugin));
         abilities.put(DiabloStoneType.MIRAGE, new MirageAbility(plugin));
-        abilities.put(DiabloStoneType.LANCE, new LanceAbility(plugin));
-        abilities.put(DiabloStoneType.ABYSS, new AbyssAbility(plugin));
-        abilities.put(DiabloStoneType.CHRONO, new ChronoAbility(plugin));
-        abilities.put(DiabloStoneType.OMEGA, new OmegaAbility(plugin));
+        abilities.put(DiabloStoneType.QUAKE, new QuakeAbility(plugin));
+        abilities.put(DiabloStoneType.HELLGATE, new HellgateAbility(plugin));
+        abilities.put(DiabloStoneType.VERTIGO, new VertigoAbility(plugin));
+        abilities.put(DiabloStoneType.MARIONETTE, new MarionetteAbility(plugin));
     }
 
     public DiabloAbility getAbility(DiabloStoneType type) {
@@ -47,11 +42,20 @@ public class AbilityManager {
         return false;
     }
 
+    public void registerActiveCast(AbilityCast cast) {
+        activeCasts.add(cast);
+    }
+
+    public void unregisterActiveCast(AbilityCast cast) {
+        activeCasts.remove(cast);
+    }
+
     public void cleanupAll() {
-        for (DiabloAbility ability : abilities.values()) {
-            if (ability != null) {
-                ability.cleanup();
+        for (AbilityCast cast : activeCasts.toArray(new AbilityCast[0])) {
+            if (cast != null) {
+                cast.cleanup();
             }
         }
+        activeCasts.clear();
     }
 }
