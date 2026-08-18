@@ -28,7 +28,7 @@ public class EtherealPhase extends Ability {
         api.runParticleEffectOnPlayer(player, "soul_drift");
         api.runParticleEffectOnPlayer(player, "flicker_effect");
 
-        sound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, 1.5f, 0.5f);
+        sound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT, 1.5f, 0.5f);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 80, 4));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 80, 1));
