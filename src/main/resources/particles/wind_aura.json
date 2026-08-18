@@ -1,0 +1,16 @@
+{
+  "particle": {
+    "type": "REDSTONE",
+    "color": {
+      "r": 144,
+      "g": 238,
+      "b": 144
+    },
+    "size": 1.5,
+    "count": 20,
+    "offsetX": 0.8,
+    "offsetY": 1.5,
+    "offsetZ": 0.8,
+    "speed": 0.03
+  }
+}
