@@ -40,7 +40,7 @@ public class TempestStrike extends Ability {
                 Location strikeLoc = player.getLocation().add(dir.clone().multiply(i / 3.0));
                 delay((long) (i * 4), () -> {
                     strikeLoc.getWorld().strikeLightning(strikeLoc);
-                    sound(strikeLoc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0f, 1.2f);
+                    sound(strikeLoc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.2f);
                     for (LivingEntity e : strikeLoc.getNearbyLivingEntities(2.0)) {
                         if (e != player) {
                             e.damage(12.0, player);
