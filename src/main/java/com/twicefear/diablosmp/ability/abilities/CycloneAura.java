@@ -55,7 +55,7 @@ public class CycloneAura extends Ability {
 
         delay(40, () -> {
             api.runParticleEffectOnPlayer(player, "cyclone_release");
-            sound(player.getLocation(), Sound.ENTITY_GENERIC_WIND_BURST, 2.0f, 0.8f);
+            sound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 2.0f, 0.8f);
             for (LivingEntity e : getNearbyLivingEntities(player, 6.0)) {
                 Vector knock = e.getLocation().toVector().subtract(player.getLocation().toVector());
                 if (knock.length() > 0) {
