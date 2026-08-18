@@ -20,27 +20,19 @@
     </properties>
 
     <repositories>
-        <!-- PaperMC repo (reliable in CI, superset of Spigot API) -->
         <repository>
             <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
-        <!-- Sonatype fallback -->
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
-        <!-- Paper API 1.21 (superset of Spigot, CI-friendly) -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21-R0.1-SNAPSHOT</version>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Aethelion is provided at runtime as a separate plugin JAR -->
     </dependencies>
 
     <build>
