@@ -47,7 +47,7 @@ public class TidalSurge extends Ability {
                             e.setVelocity(dir.clone().multiply(2.0).setY(0.3));
                         }
                     }
-                    waveLoc.getWorld().spawnParticle(Particle.WATER_SPLASH, waveLoc, 20, 1, 1, 1, 0.1);
+                    waveLoc.getWorld().spawnParticle(Particle.SPLASH, waveLoc, 20, 1, 1, 1, 0.1);
                     if (waveLoc.getBlock().getType() == org.bukkit.Material.FIRE)
                         waveLoc.getBlock().setType(org.bukkit.Material.AIR);
                 });
