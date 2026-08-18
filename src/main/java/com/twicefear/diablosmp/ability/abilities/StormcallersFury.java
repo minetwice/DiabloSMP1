@@ -41,7 +41,7 @@ public class StormcallersFury extends Ability {
                 Location strikeLoc = center.clone().add(Math.cos(angle) * dist, 0, Math.sin(angle) * dist);
 
                 strikeLoc.getWorld().strikeLightning(strikeLoc);
-                sound(strikeLoc, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0f, 1.5f);
+                sound(strikeLoc, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.5f);
                 api.spawnParticleOnPlayer(player, "storm_spark_fx");
 
                 for (LivingEntity e : strikeLoc.getNearbyLivingEntities(2.0)) {
