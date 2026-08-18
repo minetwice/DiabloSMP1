@@ -28,9 +28,9 @@ public class EtherealPhase extends Ability {
         api.runParticleEffectOnPlayer(player, "soul_drift");
         api.runParticleEffectOnPlayer(player, "flicker_effect");
 
-        sound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT, 1.5f, 0.5f);
+        sound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, 1.5f, 0.5f);
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 80, 4));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 4));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 80, 1));
 
         BukkitRunnable flicker = new BukkitRunnable() {
@@ -54,7 +54,7 @@ public class EtherealPhase extends Ability {
             api.runParticleEffectOnPlayer(player, "ghost_burst");
             sound(player.getLocation(), Sound.ENTITY_ALLAY_DEATH, 1.5f, 0.8f);
             resetPlayer(player);
-            player.sendMessage(plugin.prefix() + net.md_5.bungee.api.ChatColor.GRAY + "You return to the mortal realm.");
+            player.sendMessage(plugin.prefix() + org.bukkit.ChatColor.GRAY + "You return to the mortal realm.");
         });
     }
 }
