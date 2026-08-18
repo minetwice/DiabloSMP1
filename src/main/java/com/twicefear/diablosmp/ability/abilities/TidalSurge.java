@@ -27,7 +27,7 @@ public class TidalSurge extends Ability {
         api.spawnParticleOnPlayer(player, "water_aura_fx");
         api.runParticleEffectOnPlayer(player, "water_spiral");
 
-        sound(player.getLocation(), Sound.ENTITY_PLAYER_SPLASH, 1.5f, 0.6f);
+        sound(player.getLocation(), Sound.ENTITY_GENERIC_SPLASH, 1.5f, 0.6f);
 
         delay(40, () -> {
             api.runParticleEffectOnPlayer(player, "tidal_wave");
