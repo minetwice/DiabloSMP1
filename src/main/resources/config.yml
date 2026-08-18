@@ -1,0 +1,29 @@
+# DiabloSMP Configuration
+# ============================================================
+
+# Global ability cooldown in seconds (applied per-ability)
+default-cooldown: 15
+
+# Whether abilities can be interrupted by taking damage
+interruptible: true
+
+# Maximum abilities a player can have active simultaneously
+max-active-abilities: 1
+
+# Debug mode - prints extra console info
+debug: false
+
+# Ability item settings
+ability-item:
+  material: NETHER_STAR
+  custom-model-data: 0
+  glow: true
+
+# Cooldown message
+messages:
+  cooldown: "&cThis ability is on cooldown for &e{seconds}s&c!"
+  no-permission: "&cYou don't have permission to use this ability."
+  given: "&aYou received the ability: &e{name}&a!"
+  not-found: "&cAbility not found: &e{name}"
+  list-header: "&6=== &eAvailable Abilities &6==="
+  list-entry: "&7- &e{name} &7: {description}"
