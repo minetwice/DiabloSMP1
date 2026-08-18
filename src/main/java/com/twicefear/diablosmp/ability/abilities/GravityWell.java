@@ -50,7 +50,7 @@ public class GravityWell extends Ability {
 
             Location loc = player.getLocation();
             sound(loc, Sound.ENTITY_GENERIC_EXPLODE, 2.0f, 0.2f);
-            sound(loc, Sound.ENTITY_ANCIENT_DEATH, 1.0f, 0.5f);
+            sound(loc, Sound.ENTITY_WARDEN_DEATH, 1.0f, 0.5f);
 
             for (LivingEntity e : getNearbyLivingEntities(player, 5.0)) {
                 e.damage(20.0, player);
