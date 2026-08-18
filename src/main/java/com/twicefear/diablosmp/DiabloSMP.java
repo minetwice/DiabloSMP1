@@ -39,7 +39,7 @@ public class DiabloSMP extends JavaPlugin {
         // Register listener for right-click trigger
         getServer().getPluginManager().registerEvents(new AbilityClickListener(this), this);
 
-        getLogger().info("DiabloSMP v" + getPluginMeta().getVersion() + " enabled with "
+        getLogger().info("DiabloSMP v" + getDescription().getVersion() + " enabled with "
                 + abilityRegistry.getAbilityCount() + " abilities.");
     }
 
