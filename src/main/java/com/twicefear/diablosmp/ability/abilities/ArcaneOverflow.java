@@ -31,7 +31,7 @@ public class ArcaneOverflow extends Ability {
         api.runParticleEffectOnPlayer(player, "runic_orbit");
         api.runParticleEffectOnPlayer(player, "arcane_stream_up");
 
-        sound(player.getLocation(), Sound.BLOCK_BEACON_HUM, 2.0f, 0.5f);
+        sound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 2.0f, 0.5f);
 
         delay(60, () -> player.damage(6.0));
 
@@ -49,7 +49,7 @@ public class ArcaneOverflow extends Ability {
 
         delay(100, () -> {
             resetPlayer(player);
-            player.sendMessage(plugin.prefix() + net.md_5.bungee.api.ChatColor.AQUA
+            player.sendMessage(plugin.prefix() + org.bukkit.ChatColor.AQUA
                     + "The arcane energies dissipate.");
         });
     }
