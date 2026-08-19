@@ -3,7 +3,6 @@ package com.twicefear.diablosmp;
 import com.twicefear.diablosmp.commands.DiabloCommand;
 import com.twicefear.diablosmp.listeners.*;
 import com.twicefear.diablosmp.managers.*;
-import com.twicefear.diablosmp.stones.StoneType;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +16,7 @@ public final class DiabloSMP extends JavaPlugin {
     private AbsorbManager absorbManager;
     private SMPManager smpManager;
     private FirstJoinManager firstJoinManager;
+    private GUIListener guiListener;
 
     @Override
     public void onEnable() {
@@ -33,6 +33,7 @@ public final class DiabloSMP extends JavaPlugin {
         this.absorbManager = new AbsorbManager(this);
         this.smpManager = new SMPManager(this);
         this.firstJoinManager = new FirstJoinManager(this);
+        this.guiListener = new GUIListener(this);
 
         // Register commands
         getCommand("diablosmp").setExecutor(new DiabloCommand(this));
@@ -44,6 +45,7 @@ public final class DiabloSMP extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new AbsorbListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProtectionListener(this), this);
         Bukkit.getPluginManager().registerEvents(new InventoryListener(this), this);
+        Bukkit.getPluginManager().registerEvents(guiListener, this);
 
         // Load stones
         stoneManager.loadStones();
@@ -93,5 +95,9 @@ public final class DiabloSMP extends JavaPlugin {
 
     public FirstJoinManager getFirstJoinManager() {
         return firstJoinManager;
+    }
+
+    public GUIListener getGuiListener() {
+        return guiListener;
     }
 }
