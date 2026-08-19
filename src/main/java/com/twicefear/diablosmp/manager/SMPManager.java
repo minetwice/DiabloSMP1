@@ -44,7 +44,7 @@ public class SMPManager {
         bossBar = BossBar.bossBar(
                 net.kyori.adventure.text.Component.text(name),
                 1.0f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
-        for (Player p : Bukkit.getOnlinePlayers()) bossBar.addPlayer(p);
+        for (Player p : Bukkit.getOnlinePlayers()) p.showBossBar(bossBar);
 
         timerTask = new BukkitRunnable() {
             @Override
@@ -84,7 +84,7 @@ public class SMPManager {
                 world.getWorldBorder().setSize(plugin.config().borderEnd(), plugin.config().expandSeconds());
             }
         }
-        if (bossBar != null) { bossBar.removeAll(); bossBar = null; }
+        if (bossBar != null) { for (Player p : Bukkit.getOnlinePlayers()) p.hideBossBar(bossBar); bossBar = null; }
         if (timerTask != null) { timerTask.cancel(); timerTask = null; }
         showAnnouncements();
     }
@@ -112,15 +112,15 @@ public class SMPManager {
 
     public void stop() {
         state = State.IDLE;
-        if (bossBar != null) { bossBar.removeAll(); bossBar = null; }
+        if (bossBar != null) { for (Player p : Bukkit.getOnlinePlayers()) p.hideBossBar(bossBar); bossBar = null; }
         if (timerTask != null) { timerTask.cancel(); timerTask = null; }
         Bukkit.broadcastMessage(plugin.messages().prefixed("smp-stopped"));
     }
 
-    public void addPlayer(Player p) { if (bossBar != null) bossBar.addPlayer(p); }
+    public void addPlayer(Player p) { if (bossBar != null) p.showBossBar(bossBar); }
 
     public void shutdown() {
-        if (bossBar != null) { bossBar.removeAll(); bossBar = null; }
+        if (bossBar != null) { for (Player p : Bukkit.getOnlinePlayers()) p.hideBossBar(bossBar); bossBar = null; }
         if (timerTask != null) { timerTask.cancel(); timerTask = null; }
     }
 

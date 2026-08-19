@@ -47,7 +47,6 @@ public class ProtectionListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         if (plugin.config().keepOnDeath()) {
-            event.getItemsToDrop().removeIf(plugin.stones()::isStone);
             event.getDrops().removeIf(plugin.stones()::isStone);
         }
     }
