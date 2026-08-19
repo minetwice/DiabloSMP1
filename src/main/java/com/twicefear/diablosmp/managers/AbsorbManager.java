@@ -2,7 +2,6 @@ package com.twicefear.diablosmp.managers;
 
 import com.twicefear.diablosmp.DiabloSMP;
 import com.twicefear.diablosmp.stones.StoneType;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -52,10 +51,6 @@ public class AbsorbManager {
         shiftCount.put(player.getUniqueId(), count);
 
         player.sendActionBar(net.kyori.adventure.text.Component.text("§eShift " + count + "/3 to absorb..."));
-
-        if (count >= plugin.getConfigManager().getShiftsRequired()) {
-            resetShift(player);
-        }
     }
 
     public void playAbsorbAnimation(Player player, StoneType type) {
