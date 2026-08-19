@@ -1,0 +1,98 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/paper"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 80000
+      },
+      "model": "diablosmp:item/stone_earthquake"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80001
+      },
+      "model": "diablosmp:item/stone_inferno"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80002
+      },
+      "model": "diablosmp:item/stone_tempest"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80003
+      },
+      "model": "diablosmp:item/stone_frostbite"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80004
+      },
+      "model": "diablosmp:item/stone_shadow"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80005
+      },
+      "model": "diablosmp:item/stone_holy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80006
+      },
+      "model": "diablosmp:item/stone_void"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80007
+      },
+      "model": "diablosmp:item/stone_nature"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80008
+      },
+      "model": "diablosmp:item/stone_lightning"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80009
+      },
+      "model": "diablosmp:item/stone_blood"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80010
+      },
+      "model": "diablosmp:item/stone_gravity"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80011
+      },
+      "model": "diablosmp:item/stone_soul"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80012
+      },
+      "model": "diablosmp:item/stone_arcane"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80013
+      },
+      "model": "diablosmp:item/stone_plague"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 80014
+      },
+      "model": "diablosmp:item/stone_chronos"
+    }
+  ]
+}
