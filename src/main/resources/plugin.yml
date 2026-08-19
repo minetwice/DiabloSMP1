@@ -1,0 +1,28 @@
+name: DiabloSMP
+version: '${project.version}'
+main: com.twicefear.diablosmp.DiabloSMP
+api-version: '1.21'
+author: Twicefear
+description: Diablo SMP - 15 diablo stones with massive cinematic abilities.
+website: https://github.com/minetwice/DiabloSMP1
+folia-supported: false
+
+commands:
+  diablosmp:
+    description: Main DiabloSMP command.
+    usage: /diablosmp <start|stop|changename|withdraw|reload|status|help>
+    aliases: [dsmp, diablo]
+    permission: diablosmp.use
+  diablostone:
+    description: Give a diablo stone to a player.
+    usage: /diablostone <stone> [player]
+    aliases: [dstone]
+    permission: diablosmp.admin
+
+permissions:
+  diablosmp.use:
+    description: Allows basic plugin usage.
+    default: true
+  diablosmp.admin:
+    description: Allows admin commands.
+    default: op
