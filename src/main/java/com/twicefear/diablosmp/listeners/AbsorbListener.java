@@ -30,16 +30,18 @@ public class AbsorbListener implements Listener {
             return;
         }
 
+        // Increment and get new count
         plugin.getAbsorbManager().incrementShift(player);
+        int current = plugin.getAbsorbManager().getShiftCount(player);
 
-        if (plugin.getAbsorbManager().getShiftCount(player) >= plugin.getConfigManager().getShiftsRequired()) {
+        // Open GUI when we just reached the required shifts
+        if (current >= plugin.getConfigManager().getShiftsRequired()) {
             StoneType type = plugin.getStoneManager().getStoneType(hand);
             if (type == null) return;
 
-            // Open absorb GUI instead of auto absorb
+            // Reset count and open GUI
+            plugin.getAbsorbManager().resetShift(player);
             new AbsorbGUI(plugin, player, type).open();
-            // Reset shift count
-            plugin.getAbsorbManager().incrementShift(player); // will reset internally or we can add reset method
         }
     }
 }
