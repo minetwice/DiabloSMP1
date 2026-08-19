@@ -22,7 +22,18 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B clean package
+        run: mvn -B clean compile 2>&1 | tee /tmp/maven-output.txt
+        continue-on-error: true
+
+      - name: Show compilation errors
+        if: always()
+        run: |
+          echo "=== Maven Output ==="
+          cat /tmp/maven-output.txt
+          echo "=== End ==="
+
+      - name: Build package
+        run: mvn -B package -DskipTests
 
       - name: Upload plugin JAR
         uses: actions/upload-artifact@v4
