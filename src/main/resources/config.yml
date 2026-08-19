@@ -1,0 +1,54 @@
+# ============================================
+#          DiabloSMP Configuration
+#          Author: Twicefear
+# ============================================
+
+smp:
+  name: "DiabloSmp"
+  started: false
+  grace-period-default: 300  # seconds (5 minutes)
+  world-border:
+    start-size: 20          # blocks (20x20)
+    final-size: 20000       # blocks (20k x 20k). Use -1 for infinite
+    expand-duration: 60     # seconds to expand after grace period
+
+first-join:
+  enabled: true
+  animation-duration: 8     # seconds
+  give-random-stone: true
+  protection-during-animation: true
+
+absorb:
+  shifts-required: 3
+  animation-duration: 3     # seconds for absorb particles
+
+protect:
+  stones-can-drop-on-death: false
+  stones-can-be-stored: true
+  stones-can-be-dropped: false
+
+cooldown:
+  show-actionbar: true
+  # Resource pack unicode for bars (you will put these in resource pack)
+  ready-message: "&aAbility Ready!"
+
+bossbar:
+  enabled: true
+  color: RED
+  style: SOLID
+
+popups:
+  # These will show when SMP starts (after countdown)
+  lines:
+    - "&c&lDIABLO SMP HAS BEGUN!"
+    - "&6Survive. Absorb. Dominate."
+    - "&eMay the strongest stone win."
+
+messages:
+  prefix: "&8[&cDiablo&4SMP&8] &r"
+  no-permission: "&cYou don't have permission!"
+  smp-not-started: "&cSMP has not started yet! Wait for admin."
+  stone-absorbed: "&aYou have absorbed the %stone%!"
+  stone-withdrawn: "&eYou have withdrawn your Diablo Stone."
+  already-absorbed: "&cYou already have a stone absorbed!"
+  no-stone-absorbed: "&cYou don't have any stone absorbed."
