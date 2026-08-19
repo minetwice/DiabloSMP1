@@ -1,0 +1,14 @@
+{
+  "pack": {
+    "pack_format": 48,
+    "description": "DiabloSMP Resource Pack - Custom stones, abilities, and UI\nAuthor: Twicefear"
+  },
+  "filter": {
+    "block": {
+      "pattern": [
+        "minecraft:*"
+      ],
+      "namespace": "diablo_smp"
+    }
+  }
+}

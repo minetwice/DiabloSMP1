@@ -1,0 +1,30 @@
+name: DiabloSMP
+version: '${project.version}'
+main: com.twicefear.diablosmp.DiabloSMPPlugin
+api-version: '1.21'
+description: Ultimate Diablo Stones Plugin for Minecraft SMP
+author: Twicefear
+website: https://github.com/Twicefear/DiabloSMP
+
+load: STARTUP
+
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  diablosmp:
+    description: Main command for DiabloSMP
+    usage: /<command> [start|stop|withdraw|changename|help|reload|status]
+    permission: diablosmp.admin
+  diablostone:
+    description: Interact with Diablo Stones
+    usage: /<command> [absorb|abilities]
+    permission: diablosmp.use
+
+permissions:
+  diablosmp.admin:
+    description: Admin access to all commands
+    default: op
+  diablosmp.use:
+    description: Ability to use Diablo Stones
+    default: true
