@@ -1,0 +1,44 @@
+# DiabloSMP messages. & color codes supported.
+prefix: "&8[&c&lDiablo&8] &r"
+
+no-permission: "&cYou don't have permission to do that."
+player-only: "&cThis command can only be used by players."
+unknown-command: "&cUnknown subcommand. Use &e/diablosmp help&c."
+
+# SMP state
+smp-not-started: "&cDiabloSMP has not been started yet. Admin: &e/diablosmp start"
+smp-already-started: "&cDiabloSMP is already running."
+smp-started: "&aDiabloSMP started! Grace period is now active."
+smp-stopped: "&eDiabloSMP has been stopped."
+smp-running: "&aDiabloSMP is currently &2RUNNING&a."
+smp-idle: "&eDiabloSMP is currently &6IDLE&e."
+
+name-changed: "&aSMP name changed to: &e{name}&a."
+
+reload-success: "&aConfig reloaded."
+reload-fail: "&cFailed to reload config. See console."
+
+# Stones
+stone-given: "&aGave &e{stone} &astone to &e{player}&a."
+stone-received: "&aYou received the &e{stone} &astone!"
+stone-unknown: "&cUnknown stone: &e{name}&c. Use &e/diablostone list&c."
+
+# Absorb
+absorb-shift: "&7Shift pressed... &e{count}&7/&e{required}"
+absorb-menu-open: "&ePlace your stone in the slot to absorb it."
+absorb-success: "&a&l{stone} &astone absorbed! Abilities unlocked."
+absorb-failed: "&cAbsorb failed - no stone was placed."
+absorb-already: "&cYou already have an absorbed stone."
+
+# Withdraw
+withdraw-none: "&cYou have no absorbed stone to withdraw."
+withdraw-success: "&aStone withdrawn back to your inventory."
+
+# Join reward
+join-title: "&c&lDIABLO STONE"
+join-subtitle: "&7Awakening..."
+join-complete-title: "&a&lABSORBED"
+join-complete-subtitle: "&7Your destiny begins."
+
+# Countdown
+countdown-format: "&c&l{n}"

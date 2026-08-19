@@ -1,0 +1,98 @@
+# ============================================================
+#  DiabloSMP  -  Configuration
+#  Author: Twicefear
+#  Minecraft: 1.21 - 1.21.8  (Paper)
+# ============================================================
+
+# SMP name shown on the boss bar and in announcements.
+# Can also be changed live with /diablosmp changename <name>
+smp-name: "DiabloSmp"
+
+# ---- SMP start / grace period ----
+grace:
+  # Default minutes the admin GUI opens with.
+  default-minutes: 10
+  default-seconds: 0
+
+# ---- World border ----
+world-border:
+  # Size (blocks, diameter) during the grace period (start size).
+  start-size: 20
+  # Size the border expands to once grace ends.
+  # Use 'infinity' to remove the border completely.
+  end-size: 20000
+  # Smooth expansion time (seconds) when grace ends.
+  expand-seconds: 60
+
+# ---- Announcements shown when the grace timer ends ----
+# 3 lines of pop-up text shown one after another. Edit freely.
+announcements:
+  - "&c&l10"
+  - "&6&lDiabloSmp"
+  - "&e&lFIGHT BEGINS NOW"
+
+# ---- Join reward ----
+join-reward:
+  # Seconds the cinematic absorption animation lasts.
+  duration-seconds: 8
+  # How high the player levitates (blocks).
+  lift-height: 3.0
+  # Which stone a new player receives. Use 'random' for a random one.
+  stone: "RANDOM"
+
+# ---- Stone protection ----
+stones:
+  # Can players drop stones from their inventory?
+  allow-drop: false
+  # Are stones kept on death?
+  keep-on-death: true
+  # Are stones storable in chests/containers?
+  allow-store: false
+  # Do stones drop when the holder is killed by another player?
+  drop-on-pvp-death: false
+
+# ---- Absorb mechanic ----
+absorb:
+  # Number of shifts required to open the absorb menu.
+  required-shifts: 3
+  # Seconds the orbit/absorb animation takes.
+  animation-seconds: 4
+
+# ---- Cooldown display ----
+# Custom resource-pack characters used for the action bar.
+# The bars are built from these glyphs (see resource pack).
+cooldown:
+  # Primary (right click) ability bar.
+  primary-ready-char: "\uE001"
+  primary-segment-char: "\uE002"
+  primary-empty-char: "\uE003"
+  # Secondary (shift+right click) ability bar.
+  secondary-ready-char: "\uE004"
+  secondary-segment-char: "\uE005"
+  secondary-empty-char: "\uE006"
+  # Stone icon shown between the two bars (\uE010 = unknown).
+  stone-icon-unknown-char: "\uE010"
+  # Action bar refresh interval (ticks).
+  refresh-ticks: 2
+
+# ---- Per-stone ability cooldowns (seconds) ----
+# Format: stone-name.primary / stone-name.secondary
+cooldowns:
+  earthquake: { primary: 45, secondary: 120 }
+  inferno: { primary: 30, secondary: 90 }
+  tempest: { primary: 35, secondary: 100 }
+  frostbite: { primary: 40, secondary: 110 }
+  shadow: { primary: 25, secondary: 80 }
+  holy: { primary: 50, secondary: 140 }
+  void: { primary: 45, secondary: 130 }
+  nature: { primary: 30, secondary: 95 }
+  lightning: { primary: 20, secondary: 70 }
+  blood: { primary: 35, secondary: 100 }
+  gravity: { primary: 40, secondary: 115 }
+  soul: { primary: 45, secondary: 125 }
+  arcane: { primary: 30, secondary: 90 }
+  plague: { primary: 35, secondary: 105 }
+  chronos: { primary: 60, secondary: 150 }
+
+# ---- Debug ----
+debug: false
