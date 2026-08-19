@@ -2,25 +2,48 @@
 
 **Author:** Twicefear  
 **Version:** 1.0.0  
-**Platform:** Paper 1.21 - 1.21.8  
+**Platform:** Paper 1.21 – 1.21.8  
+**Branch:** Grok
 
 ## Features
 
-- **15 Legendary Diablo Stones** each with 2 powerful abilities
-- Complex first-join animation with particles + levitation + protection
-- Absorb system (Shift 3 times while holding stone)
-- Dual cooldown system with ActionBar (ready for resource pack unicode bars)
-- `/diablosmp start` with grace period + BossBar + WorldBorder control
-- Withdraw, give, list, reload commands
-- Configurable protection (drop, store, death)
-- Massive particle & physics based abilities (Earthquake Relic fully implemented as example)
+### 15 Legendary Diablo Stones
+Each stone has **2 powerful abilities** (Right Click + Shift + Right Click) with complex particles, physics and domain effects.
 
-## Commands
+| Stone                | Primary                  | Secondary              |
+|----------------------|--------------------------|------------------------|
+| Infernal Core        | Meteor Strike            | Hellfire Domain        |
+| Abyssal Shard        | Abyss Pull               | Drowning Realm         |
+| Earthquake Relic     | Rock Levitation + Launch | Pillar Domain          |
+| Tempest Orb          | Tornado Pull             | Storm Prison           |
+| Shadow Fang          | Shadow Dash              | Night Domain           |
+| Radiant Prism        | Holy Beam                | Sanctuary Domain       |
+| Frostbite Crystal    | Ice Spikes Wave          | Frozen Tomb            |
+| Thunderbolt Core     | Chain Lightning          | Thunder Domain         |
+| Bloodmoon Gem        | Life Steal Aura          | Blood Arena            |
+| Nature's Wrath       | Vine Trap + Thorns       | Jungle Domain          |
+| Phantom Echo         | Phase Shift              | Ghost Realm            |
+| Chaos Fragment       | Chaos Burst              | Chaos Domain           |
+| Dragonheart Scale    | Dragon Breath Cone       | Dragon Roost           |
+| Voidwalker Stone     | Void Step                | Void Collapse          |
+| Celestial Star       | Starfall Barrage         | Cosmic Prison          |
 
+### Core Systems
+- **First Join Animation** — 8 second levitation + complex particle rings + protection + random stone reward
+- **Absorb System** — Hold stone → Shift 3 times → 1-slot GUI → absorb with orbiting animation
+- **Dual Cooldown Bars** — ActionBar with unicode support (resource pack ready)
+- **Stone Icon Display** — Shows current absorbed stone (or question mark if none)
+- **SMP Start System** — `/diablosmp start` opens GUI for timer (minutes + seconds)
+- **BossBar** — Grace period timer + SMP name
+- **WorldBorder** — Starts small, expands after grace period (configable, supports infinite)
+- **Withdraw** — `/diablosmp withdraw` to get stone back
+- **Protection** — Configurable drop/store/death rules for stones
+
+### Commands
 | Command | Description |
 |---------|-------------|
-| `/diablosmp start [seconds]` | Start SMP with grace period |
-| `/diablosmp stop` | Stop SMP |
+| `/diablosmp start` | Open start GUI (timer settings) |
+| `/diablosmp stop` | Stop the SMP |
 | `/diablosmp changename <name>` | Change SMP name |
 | `/diablosmp withdraw` | Withdraw absorbed stone |
 | `/diablosmp give <player> <stone>` | Give a stone |
@@ -28,18 +51,21 @@
 | `/diablosmp reload` | Reload config |
 | `/diablosmp info` | Plugin info |
 
-## Building
+### Resource Pack
+Located in `/resourcepack`
+- Models for all 15 stones (CustomModelData 1000-1014)
+- Font system for cooldown bars & icons
+- See `resourcepack/HOW_TO_ADD_TEXTURES.md` for texture instructions
 
+**Texture Style:** Glowing framed square icons (exactly like the purple eye / blue bubbles example)
+
+### Building
 ```bash
 ./gradlew build
 ```
+Artifact: `build/libs/DiabloSMP-1.0.0.jar`
 
-Artifact will be in `build/libs/`
+GitHub Actions automatically builds on push to `Grok` branch.
 
-## Resource Pack
-
-Resource pack is under development (custom models for stones, cooldown bars using custom fonts, domain models).
-
-## License
-
-All rights reserved - Twicefear
+## Author
+**Twicefear**
