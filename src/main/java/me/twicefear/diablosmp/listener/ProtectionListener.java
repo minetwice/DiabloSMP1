@@ -38,7 +38,8 @@ public class ProtectionListener implements Listener {
         Inventory topInv = event.getView().getTopInventory();
         Inventory bottomInv = event.getView().getBottomInventory();
 
-        boolean isContainerOpen = topInv.getHolder() != event.getWhoClicked();
+        boolean isAbsorbGui = event.getView().getTitle().contains("Place Stone to Absorb");
+        boolean isContainerOpen = !isAbsorbGui && (topInv.getHolder() != event.getWhoClicked());
         boolean allowStore = plugin.getConfig().getBoolean("protection.allow_store_in_chests", false);
 
         if (isContainerOpen && !allowStore) {

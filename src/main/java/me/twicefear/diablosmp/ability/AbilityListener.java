@@ -1,14 +1,10 @@
 package me.twicefear.diablosmp.ability;
 
 import me.twicefear.diablosmp.DiabloSMP;
-import me.twicefear.diablosmp.ability.impl.EarthSmasherAbility;
-import me.twicefear.diablosmp.ability.impl.FlameLordAbility;
-import me.twicefear.diablosmp.ability.impl.GenericStoneAbility;
-import me.twicefear.diablosmp.ability.impl.VoidWalkerAbility;
+import me.twicefear.diablosmp.ability.impl.*;
 import me.twicefear.diablosmp.stone.StoneType;
 import me.twicefear.diablosmp.user.UserData;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,35 +12,44 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class AbilityListener implements Listener {
 
     private final DiabloSMP plugin;
     private final EarthSmasherAbility earthSmasher;
     private final FlameLordAbility flameLord;
     private final VoidWalkerAbility voidWalker;
-    private final me.twicefear.diablosmp.ability.impl.FrostMonarchAbility frostMonarch;
-    private final me.twicefear.diablosmp.ability.impl.LightningOverlordAbility lightningOverlord;
-    private final Map<StoneType, GenericStoneAbility> genericAbilities = new HashMap<>();
+    private final FrostMonarchAbility frostMonarch;
+    private final LightningOverlordAbility lightningOverlord;
+    private final ShadowReaperAbility shadowReaper;
+    private final VenomHydraAbility venomHydra;
+    private final CelestialWardenAbility celestialWarden;
+    private final WindTempestAbility windTempest;
+    private final BloodBerserkerAbility bloodBerserker;
+    private final GravityMasterAbility gravityMaster;
+    private final TimeWeaverAbility timeWeaver;
+    private final PhantomAssassinAbility phantomAssassin;
+    private final IronTitanAbility ironTitan;
+    private final ChaosArchonAbility chaosArchon;
 
     public AbilityListener(DiabloSMP plugin) {
         this.plugin = plugin;
         this.earthSmasher = new EarthSmasherAbility(plugin);
         this.flameLord = new FlameLordAbility(plugin);
         this.voidWalker = new VoidWalkerAbility(plugin);
-        this.frostMonarch = new me.twicefear.diablosmp.ability.impl.FrostMonarchAbility(plugin);
-        this.lightningOverlord = new me.twicefear.diablosmp.ability.impl.LightningOverlordAbility(plugin);
+        this.frostMonarch = new FrostMonarchAbility(plugin);
+        this.lightningOverlord = new LightningOverlordAbility(plugin);
+        this.shadowReaper = new ShadowReaperAbility(plugin);
+        this.venomHydra = new VenomHydraAbility(plugin);
+        this.celestialWarden = new CelestialWardenAbility(plugin);
+        this.windTempest = new WindTempestAbility(plugin);
+        this.bloodBerserker = new BloodBerserkerAbility(plugin);
+        this.gravityMaster = new GravityMasterAbility(plugin);
+        this.timeWeaver = new TimeWeaverAbility(plugin);
+        this.phantomAssassin = new PhantomAssassinAbility(plugin);
+        this.ironTitan = new IronTitanAbility(plugin);
+        this.chaosArchon = new ChaosArchonAbility(plugin);
 
         plugin.getServer().getPluginManager().registerEvents(earthSmasher, plugin);
-
-        for (StoneType type : StoneType.values()) {
-            if (type != StoneType.EARTH_SMASHER && type != StoneType.FLAME_LORD && type != StoneType.VOID_WALKER
-                    && type != StoneType.FROST_MONARCH && type != StoneType.LIGHTNING_OVERLORD) {
-                genericAbilities.put(type, new GenericStoneAbility(plugin, type));
-            }
-        }
     }
 
     @EventHandler
@@ -107,12 +112,45 @@ public class AbilityListener implements Listener {
                 if (isSecondary) lightningOverlord.executeSecondary(player);
                 else lightningOverlord.execute(player);
                 break;
-            default:
-                GenericStoneAbility generic = genericAbilities.get(stone);
-                if (generic != null) {
-                    if (isSecondary) generic.executeSecondary(player);
-                    else generic.execute(player);
-                }
+            case SHADOW_REAPER:
+                if (isSecondary) shadowReaper.executeSecondary(player);
+                else shadowReaper.execute(player);
+                break;
+            case VENOM_HYDRA:
+                if (isSecondary) venomHydra.executeSecondary(player);
+                else venomHydra.execute(player);
+                break;
+            case CELESTIAL_WARDEN:
+                if (isSecondary) celestialWarden.executeSecondary(player);
+                else celestialWarden.execute(player);
+                break;
+            case WIND_TEMPEST:
+                if (isSecondary) windTempest.executeSecondary(player);
+                else windTempest.execute(player);
+                break;
+            case BLOOD_BERSERKER:
+                if (isSecondary) bloodBerserker.executeSecondary(player);
+                else bloodBerserker.execute(player);
+                break;
+            case GRAVITY_MASTER:
+                if (isSecondary) gravityMaster.executeSecondary(player);
+                else gravityMaster.execute(player);
+                break;
+            case TIME_WEAVER:
+                if (isSecondary) timeWeaver.executeSecondary(player);
+                else timeWeaver.execute(player);
+                break;
+            case PHANTOM_ASSASSIN:
+                if (isSecondary) phantomAssassin.executeSecondary(player);
+                else phantomAssassin.execute(player);
+                break;
+            case IRON_TITAN:
+                if (isSecondary) ironTitan.executeSecondary(player);
+                else ironTitan.execute(player);
+                break;
+            case CHAOS_ARCHON:
+                if (isSecondary) chaosArchon.executeSecondary(player);
+                else chaosArchon.execute(player);
                 break;
         }
     }

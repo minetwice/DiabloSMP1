@@ -38,8 +38,12 @@ public class FirstJoinListener implements Listener {
         plugin.getUserManager().loadPlayerData(player);
         UserData userData = plugin.getUserManager().getUserData(player.getUniqueId());
 
-        if (!player.hasPlayedBefore() && plugin.getConfig().getBoolean("first_join.enabled", true) && plugin.getSmpManager().isStarted()) {
-            triggerFirstJoinSequence(player, userData);
+        if (plugin.getConfig().getBoolean("first_join.enabled", true) && !userData.hasReceivedFirstJoinStone()) {
+            if (plugin.getSmpManager().isStarted()) {
+                userData.setHasReceivedFirstJoinStone(true);
+                plugin.getUserManager().savePlayerData(player);
+                triggerFirstJoinSequence(player, userData);
+            }
         }
     }
 

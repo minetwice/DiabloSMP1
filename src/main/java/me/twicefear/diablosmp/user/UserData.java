@@ -12,6 +12,7 @@ public class UserData {
     private long lastShiftTime = 0;
     private int shiftCount = 0;
     private boolean isFirstJoinAnimationActive = false;
+    private boolean hasReceivedFirstJoinStone = false;
 
     public UserData(UUID playerUuid) {
         this.playerUuid = playerUuid;
@@ -86,5 +87,13 @@ public class UserData {
 
     public void setFirstJoinAnimationActive(boolean active) {
         this.isFirstJoinAnimationActive = active;
+    }
+
+    public boolean hasReceivedFirstJoinStone() {
+        return hasReceivedFirstJoinStone;
+    }
+
+    public void setHasReceivedFirstJoinStone(boolean received) {
+        this.hasReceivedFirstJoinStone = received;
     }
 }

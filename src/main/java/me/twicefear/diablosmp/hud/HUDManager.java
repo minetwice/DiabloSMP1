@@ -52,26 +52,38 @@ public class HUDManager {
         } else {
             // Right Click Cooldown
             String primaryKey = stone.getId() + "_primary";
-            if (userData.isCooldowned(primaryKey)) {
-                double rem = userData.getRemainingCooldownSeconds(primaryKey);
-                leftBar = ChatColor.RED + "R: " + String.format("%.1fs", rem);
-            } else {
-                leftBar = ChatColor.GREEN + "\uE001 &aAbility Ready!";
-            }
+            double primaryRem = userData.getRemainingCooldownSeconds(primaryKey);
+            leftBar = "R: " + formatProgressBar(primaryRem, stone.getPrimaryCooldown());
 
             // Stone Icon
             stoneIcon = " " + ChatColor.GOLD + stone.getHudSymbol() + " ";
 
             // Shift + Right Click Cooldown
             String secondaryKey = stone.getId() + "_secondary";
-            if (userData.isCooldowned(secondaryKey)) {
-                double rem = userData.getRemainingCooldownSeconds(secondaryKey);
-                rightBar = ChatColor.RED + "Shift+R: " + String.format("%.1fs", rem);
-            } else {
-                rightBar = ChatColor.GREEN + "\uE001 &aAbility Ready!";
-            }
+            double secondaryRem = userData.getRemainingCooldownSeconds(secondaryKey);
+            rightBar = "Shift+R: " + formatProgressBar(secondaryRem, stone.getSecondaryCooldown());
         }
 
         return ChatColor.translateAlternateColorCodes('&', leftBar + stoneIcon + rightBar);
+    }
+
+    private String formatProgressBar(double currentSeconds, double totalSeconds) {
+        if (currentSeconds <= 0) {
+            return ChatColor.GREEN + "\uE001 Ability Ready!";
+        }
+        int totalBars = 6;
+        double progress = Math.max(0.0, Math.min(1.0, 1.0 - (currentSeconds / totalSeconds)));
+        int filledBars = (int) Math.round(progress * totalBars);
+
+        StringBuilder bar = new StringBuilder(ChatColor.DARK_GRAY + "[");
+        for (int i = 0; i < totalBars; i++) {
+            if (i < filledBars) {
+                bar.append(ChatColor.GREEN).append("|");
+            } else {
+                bar.append(ChatColor.RED).append("|");
+            }
+        }
+        bar.append(ChatColor.DARK_GRAY).append("] ").append(ChatColor.RED).append(String.format("%.1fs", currentSeconds));
+        return bar.toString();
     }
 }

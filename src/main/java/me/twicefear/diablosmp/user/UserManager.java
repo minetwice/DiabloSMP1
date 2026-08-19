@@ -17,10 +17,12 @@ public class UserManager {
     private final DiabloSMP plugin;
     private final Map<UUID, UserData> userMap = new ConcurrentHashMap<>();
     private final NamespacedKey absorbedStoneKey;
+    private final NamespacedKey receivedFirstStoneKey;
 
     public UserManager(DiabloSMP plugin) {
         this.plugin = plugin;
         this.absorbedStoneKey = new NamespacedKey(plugin, "absorbed_stone");
+        this.receivedFirstStoneKey = new NamespacedKey(plugin, "received_first_stone");
     }
 
     public UserData getUserData(UUID uuid) {
@@ -36,6 +38,12 @@ public class UserManager {
                 data.setAbsorbedStone(StoneType.fromId(stoneId));
             }
         }
+        if (pdc.has(receivedFirstStoneKey, PersistentDataType.BYTE)) {
+            Byte val = pdc.get(receivedFirstStoneKey, PersistentDataType.BYTE);
+            if (val != null && val == (byte) 1) {
+                data.setHasReceivedFirstJoinStone(true);
+            }
+        }
     }
 
     public void savePlayerData(Player player) {
@@ -45,6 +53,9 @@ public class UserManager {
             pdc.set(absorbedStoneKey, PersistentDataType.STRING, data.getAbsorbedStone().getId());
         } else {
             pdc.remove(absorbedStoneKey);
+        }
+        if (data.hasReceivedFirstJoinStone()) {
+            pdc.set(receivedFirstStoneKey, PersistentDataType.BYTE, (byte) 1);
         }
     }
 
