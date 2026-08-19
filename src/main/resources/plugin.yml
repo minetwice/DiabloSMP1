@@ -1,0 +1,25 @@
+name: DiabloSMP
+version: '${version}'
+main: com.twicefear.diablosmp.DiabloSMP
+api-version: '1.21'
+author: Twicefear
+description: Diablo SMP - 15 Legendary Diablo Stones with massive abilities
+website: https://github.com/minetwice/DiabloSMP1
+
+commands:
+  diablosmp:
+    description: Main command for Diablo SMP
+    usage: /diablosmp <start|stop|changename|withdraw|give|reload|info>
+    aliases: [dsmp, diablo]
+    permission: diablosmp.admin
+
+permissions:
+  diablosmp.admin:
+    description: Full access to DiabloSMP commands
+    default: op
+  diablosmp.use:
+    description: Allows using Diablo Stones abilities
+    default: true
+  diablosmp.bypass.cooldown:
+    description: Bypass ability cooldowns
+    default: op
