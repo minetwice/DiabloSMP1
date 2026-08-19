@@ -1,0 +1,9 @@
+{
+  "provider": {
+    "type": "bitmap",
+    "file": "diablo_smp:gui/cooldown_bar.png",
+    "ascent": 8,
+    "height": 8
+  },
+  "skip_validation": false
+}

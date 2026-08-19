@@ -1,0 +1,85 @@
+{
+  "sounds": {
+    "diablo_smp.stone_absorb": {
+      "sounds": [
+        {
+          "name": "diablo_smp:stone_absorb",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.ability_activate": {
+      "sounds": [
+        {
+          "name": "diablo_smp:ability_activate",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.earthquake_rumble": {
+      "sounds": [
+        {
+          "name": "diablo_smp:earthquake_rumble",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.inferno_burn": {
+      "sounds": [
+        {
+          "name": "diablo_smp:inferno_burn",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.frostbite_freeze": {
+      "sounds": [
+        {
+          "name": "diablo_smp:frostbite_freeze",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.lightning_strike": {
+      "sounds": [
+        {
+          "name": "diablo_smp:lightning_strike",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.cosmic_power": {
+      "sounds": [
+        {
+          "name": "diablo_smp:cosmic_power",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.smp_start": {
+      "sounds": [
+        {
+          "name": "diablo_smp:smp_start",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    },
+    "diablo_smp.grace_end": {
+      "sounds": [
+        {
+          "name": "diablo_smp:grace_end",
+          "volume": 1.0,
+          "pitch": 1.0
+        }
+      ]
+    }
+  }
+}

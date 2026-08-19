@@ -1,0 +1,98 @@
+# DiabloSMP Configuration File
+# Author: Twicefear
+
+# SMP Settings
+smp:
+  default-name: "DiabloSMP"
+  grace-period:
+    default-minutes: 5
+    default-seconds: 0
+  world-border:
+    initial-size: 20
+    final-size: 20000
+    # Use -1 for infinite border
+    infinite: false
+  announcements:
+    enabled: true
+    countdown-seconds: 10
+    messages:
+      - "&c&lTHE GRACE PERIOD IS ENDING!"
+      - "&e&lDIABLOSMP BEGINS NOW!"
+      - "&6&lMAY THE BEST WINNER WIN!"
+
+# Stone Settings
+stones:
+  drop-on-death: false
+  prevent-drop: true
+  prevent-storage: false
+  absorb-animation-duration: 80 # ticks (4 seconds)
+
+# Cooldown Settings
+cooldown:
+  show-actionbar: true
+  ready-message: "\uE001 &aAbility Ready!"
+  bar-style: "ACTION_BAR" # ACTION_BAR, BOSSBAR, CHAT
+
+# Particle Settings
+particles:
+  join-reward:
+    enabled: true
+    duration-ticks: 160 # 8 seconds
+    types:
+      - SPELL_MOB
+      - PORTAL
+      - DRAGON_BREATH
+  ability-effects:
+    high-quality: true
+    max-particles: 5000
+
+# Ability Balance (Cooldown in seconds)
+abilities:
+  earthquake:
+    primary-cooldown: 120
+    secondary-cooldown: 300
+  inferno:
+    primary-cooldown: 90
+    secondary-cooldown: 180
+  frostbite:
+    primary-cooldown: 60
+    secondary-cooldown: 150
+  tempest:
+    primary-cooldown: 100
+    secondary-cooldown: 200
+  void:
+    primary-cooldown: 150
+    secondary-cooldown: 250
+  lightning:
+    primary-cooldown: 45
+    secondary-cooldown: 120
+  celestial:
+    primary-cooldown: 200
+    secondary-cooldown: 400
+  abyssal:
+    primary-cooldown: 180
+    secondary-cooldown: 350
+  solar:
+    primary-cooldown: 110
+    secondary-cooldown: 220
+  lunar:
+    primary-cooldown: 80
+    secondary-cooldown: 160
+  chrono:
+    primary-cooldown: 300
+    secondary-cooldown: 600
+  spectral:
+    primary-cooldown: 70
+    secondary-cooldown: 140
+  primal:
+    primary-cooldown: 130
+    secondary-cooldown: 260
+  cosmic:
+    primary-cooldown: 250
+    secondary-cooldown: 500
+  ethereal:
+    primary-cooldown: 95
+    secondary-cooldown: 190
+  shadow:
+    primary-cooldown: 55
+    secondary-cooldown: 110
