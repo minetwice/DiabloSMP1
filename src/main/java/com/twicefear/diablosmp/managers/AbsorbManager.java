@@ -2,7 +2,6 @@ package com.twicefear.diablosmp.managers;
 
 import com.twicefear.diablosmp.DiabloSMP;
 import com.twicefear.diablosmp.stones.StoneType;
-import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -32,15 +31,20 @@ public class AbsorbManager {
 
     public void setAbsorbed(Player player, StoneType type) {
         absorbed.put(player.getUniqueId(), type);
+        resetShift(player);
     }
 
     public void removeAbsorbed(Player player) {
         absorbed.remove(player.getUniqueId());
-        shiftCount.remove(player.getUniqueId());
+        resetShift(player);
     }
 
     public int getShiftCount(Player player) {
         return shiftCount.getOrDefault(player.getUniqueId(), 0);
+    }
+
+    public void resetShift(Player player) {
+        shiftCount.put(player.getUniqueId(), 0);
     }
 
     public void incrementShift(Player player) {
@@ -50,9 +54,7 @@ public class AbsorbManager {
         player.sendActionBar(net.kyori.adventure.text.Component.text("§eShift " + count + "/3 to absorb..."));
 
         if (count >= plugin.getConfigManager().getShiftsRequired()) {
-            // Open absorb menu (simple for now - auto absorb if holding stone)
-            shiftCount.put(player.getUniqueId(), 0);
-            // Actual absorb happens in listener when they place in menu
+            resetShift(player);
         }
     }
 
