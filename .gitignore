@@ -7,18 +7,19 @@
 target/
 
 # Dependencies
-node_modules/
-venv/
-.venv/
-__pycache__/
 .mypy_cache/
 .pytest_cache/
-.gradle/
+.coverage
+coverage/
+htmlcov/
 
 # Logs and temp files
 *.log
 *.tmp
-*.swp
+
+# System files
+.DS_Store
+Thumbs.db
 
 # Environment
 .env
@@ -28,15 +29,8 @@ __pycache__/
 # Editors
 .vscode/
 .idea/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
+*.swp
+*.swo
 
 # Compressed files
 *.zip
