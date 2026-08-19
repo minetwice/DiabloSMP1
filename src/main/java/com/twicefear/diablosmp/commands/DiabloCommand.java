@@ -1,16 +1,14 @@
 package com.twicefear.diablosmp.commands;
 
 import com.twicefear.diablosmp.DiabloSMP;
+import com.twicefear.diablosmp.gui.StartGUI;
 import com.twicefear.diablosmp.stones.StoneType;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,10 +38,17 @@ public class DiabloCommand implements CommandExecutor, TabCompleter {
                     sender.sendMessage(plugin.getConfigManager().getMessage("no-permission"));
                     return true;
                 }
-                // Simple start for now (GUI later)
-                int seconds = args.length > 1 ? parseInt(args[1], 300) : plugin.getConfigManager().getGracePeriodDefault();
-                plugin.getSmpManager().startSMP(seconds);
-                sender.sendMessage("§aSMP started with " + seconds + "s grace period!");
+                if (!(sender instanceof Player player)) {
+                    // Console can still start with seconds argument
+                    int seconds = args.length > 1 ? parseInt(args[1], 300) : plugin.getConfigManager().getGracePeriodDefault();
+                    plugin.getSmpManager().startSMP(seconds);
+                    sender.sendMessage("§aSMP started with " + seconds + "s grace period!");
+                    return true;
+                }
+                // Open GUI for players
+                StartGUI gui = new StartGUI(plugin, player);
+                plugin.getGuiListener().registerStartGUI(player, gui);
+                gui.open();
             }
             case "stop" -> {
                 if (!sender.hasPermission("diablosmp.admin")) return true;
@@ -117,7 +122,7 @@ public class DiabloCommand implements CommandExecutor, TabCompleter {
 
     private void sendHelp(CommandSender sender) {
         sender.sendMessage("§6§l=== DiabloSMP Commands ===");
-        sender.sendMessage("§e/diablosmp start [seconds] §7- Start the SMP");
+        sender.sendMessage("§e/diablosmp start §7- Open start GUI (or /start <seconds> from console)");
         sender.sendMessage("§e/diablosmp stop §7- Stop the SMP");
         sender.sendMessage("§e/diablosmp changename <name> §7- Change SMP name");
         sender.sendMessage("§e/diablosmp withdraw §7- Withdraw absorbed stone");
