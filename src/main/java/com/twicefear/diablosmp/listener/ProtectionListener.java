@@ -1,6 +1,7 @@
 package com.twicefear.diablosmp.listener;
 
 import com.twicefear.diablosmp.DiabloSMP;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,6 +34,13 @@ public class ProtectionListener implements Listener {
         if (event.getInventory().getType() == InventoryType.PLAYER) return;
         if (event.getInventory().getType() == InventoryType.CRAFTING) return;
         if (event.getInventory().getType() == InventoryType.CREATIVE) return;
+
+        // Exempt the absorb GUI so stones can be placed into it
+        if (event.getView().getTitle() != null) {
+            String title = ChatColor.stripColor(event.getView().getTitle());
+            if (title.equals("Place Stone to Absorb")) return;
+        }
+
         ItemStack item = event.getCurrentItem();
         if (item == null) item = event.getCursor();
         if (plugin.stones().isStone(item)) {
