@@ -1,0 +1,23 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "item/nether_star"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1000 }, "model": "diablosmp:item/infernal_core" },
+    { "predicate": { "custom_model_data": 1001 }, "model": "diablosmp:item/abyssal_shard" },
+    { "predicate": { "custom_model_data": 1002 }, "model": "diablosmp:item/earthquake_relic" },
+    { "predicate": { "custom_model_data": 1003 }, "model": "diablosmp:item/tempest_orb" },
+    { "predicate": { "custom_model_data": 1004 }, "model": "diablosmp:item/shadow_fang" },
+    { "predicate": { "custom_model_data": 1005 }, "model": "diablosmp:item/radiant_prism" },
+    { "predicate": { "custom_model_data": 1006 }, "model": "diablosmp:item/frostbite_crystal" },
+    { "predicate": { "custom_model_data": 1007 }, "model": "diablosmp:item/thunderbolt_core" },
+    { "predicate": { "custom_model_data": 1008 }, "model": "diablosmp:item/bloodmoon_gem" },
+    { "predicate": { "custom_model_data": 1009 }, "model": "diablosmp:item/natures_wrath" },
+    { "predicate": { "custom_model_data": 1010 }, "model": "diablosmp:item/phantom_echo" },
+    { "predicate": { "custom_model_data": 1011 }, "model": "diablosmp:item/chaos_fragment" },
+    { "predicate": { "custom_model_data": 1012 }, "model": "diablosmp:item/dragonheart_scale" },
+    { "predicate": { "custom_model_data": 1013 }, "model": "diablosmp:item/voidwalker_stone" },
+    { "predicate": { "custom_model_data": 1014 }, "model": "diablosmp:item/celestial_star" }
+  ]
+}
