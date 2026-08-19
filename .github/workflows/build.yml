@@ -21,16 +21,16 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
-        run: mvn -B clean compile 2>&1 | tee /tmp/maven-output.txt
-        continue-on-error: true
-
-      - name: Show compilation errors
-        if: always()
+      - name: Compile and show errors
         run: |
-          echo "=== Maven Output ==="
-          cat /tmp/maven-output.txt
-          echo "=== End ==="
+          mvn -B clean compile 2>&1 | tee /tmp/maven-output.txt
+          if grep -q "BUILD FAILURE" /tmp/maven-output.txt; then
+            echo "::error::Maven compilation failed. Extracting errors..."
+            grep -E "^\[ERROR\]" /tmp/maven-output.txt | head -50 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 1
+          fi
 
       - name: Build package
         run: mvn -B package -DskipTests
