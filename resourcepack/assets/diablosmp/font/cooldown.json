@@ -1,0 +1,32 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "diablosmp:font/cooldown_bar.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": ["\uE001"]
+    },
+    {
+      "type": "bitmap",
+      "file": "diablosmp:font/cooldown_bar_full.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": ["\uE002"]
+    },
+    {
+      "type": "bitmap",
+      "file": "diablosmp:font/stone_icon.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": ["\uE010"]
+    },
+    {
+      "type": "bitmap",
+      "file": "diablosmp:font/question_mark.png",
+      "ascent": 8,
+      "height": 9,
+      "chars": ["\uE011"]
+    }
+  ]
+}
