@@ -1,0 +1,98 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "item/netherite_scrap"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "custom_model_data": 1001
+            },
+            "model": "item/diablo_stone_earth_smasher"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1002
+            },
+            "model": "item/diablo_stone_flame_lord"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1003
+            },
+            "model": "item/diablo_stone_void_walker"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1004
+            },
+            "model": "item/diablo_stone_frost_monarch"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1005
+            },
+            "model": "item/diablo_stone_lightning_overlord"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1006
+            },
+            "model": "item/diablo_stone_shadow_reaper"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1007
+            },
+            "model": "item/diablo_stone_venom_hydra"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1008
+            },
+            "model": "item/diablo_stone_celestial_warden"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1009
+            },
+            "model": "item/diablo_stone_wind_tempest"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1010
+            },
+            "model": "item/diablo_stone_blood_berserker"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1011
+            },
+            "model": "item/diablo_stone_gravity_master"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1012
+            },
+            "model": "item/diablo_stone_time_weaver"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1013
+            },
+            "model": "item/diablo_stone_phantom_assassin"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1014
+            },
+            "model": "item/diablo_stone_iron_titan"
+        },
+        {
+            "predicate": {
+                "custom_model_data": 1015
+            },
+            "model": "item/diablo_stone_chaos_archon"
+        }
+    ]
+}

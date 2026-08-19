@@ -1,0 +1,18 @@
+name: DiabloSMP
+version: '${version}'
+main: me.twicefear.diablosmp.DiabloSMP
+api-version: '1.21'
+author: Twicefear
+description: Complex Diablo SMP Paper plugin with 15 Diablo Stones, custom abilities, HUD cooldowns, animations, and resource pack.
+commands:
+  diablosmp:
+    description: Main DiabloSMP management command
+    permission: diablosmp.use
+    aliases: [dsmp, diablo]
+permissions:
+  diablosmp.use:
+    description: Allows access to DiabloSMP basic features
+    default: true
+  diablosmp.admin:
+    description: Allows administrative actions in DiabloSMP
+    default: op
