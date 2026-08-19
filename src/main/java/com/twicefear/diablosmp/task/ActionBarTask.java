@@ -5,6 +5,7 @@ import com.twicefear.diablosmp.stone.StoneType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -43,7 +44,7 @@ public class ActionBarTask extends BukkitRunnable {
                 : plugin.cooldowns().isSecondaryReady(player.getUniqueId());
         if (ready) {
             String readyChar = plugin.config().cooldownChar(primary ? "primary-ready" : "secondary-ready");
-            return readyChar + " " + net.md_5.bungee.api.ChatColor.GREEN + "Ability Ready!";
+            return readyChar + " " + ChatColor.GREEN + "Ability Ready!";
         }
         double fraction = primary
                 ? plugin.cooldowns().primaryFraction(player.getUniqueId(), stone)
@@ -59,17 +60,17 @@ public class ActionBarTask extends BukkitRunnable {
         long rem = primary
                 ? plugin.cooldowns().primaryRemaining(player.getUniqueId())
                 : plugin.cooldowns().secondaryRemaining(player.getUniqueId());
-        sb.append(" ").append(net.md_5.bungee.api.ChatColor.RED).append(rem).append("s");
+        sb.append(" ").append(ChatColor.RED).append(rem).append("s");
         return sb.toString();
     }
 
     private String buildStoneIcon(StoneType stone) {
         if (stone == null) {
             String unknown = plugin.config().cooldownChar("stone-unknown");
-            return net.md_5.bungee.api.ChatColor.GRAY + unknown;
+            return ChatColor.GRAY + unknown;
         }
         int code = 0xE020 + stone.ordinal();
         String icon = new String(Character.toChars(code));
-        return net.md_5.bungee.api.ChatColor.WHITE + icon;
+        return ChatColor.WHITE + icon;
     }
 }
