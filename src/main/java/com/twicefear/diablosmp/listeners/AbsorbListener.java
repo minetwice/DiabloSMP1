@@ -1,6 +1,7 @@
 package com.twicefear.diablosmp.listeners;
 
 import com.twicefear.diablosmp.DiabloSMP;
+import com.twicefear.diablosmp.gui.AbsorbGUI;
 import com.twicefear.diablosmp.stones.StoneType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,12 +36,10 @@ public class AbsorbListener implements Listener {
             StoneType type = plugin.getStoneManager().getStoneType(hand);
             if (type == null) return;
 
-            // Remove item
-            hand.setAmount(hand.getAmount() - 1);
-
-            // Absorb
-            plugin.getAbsorbManager().setAbsorbed(player, type);
-            plugin.getAbsorbManager().playAbsorbAnimation(player, type);
+            // Open absorb GUI instead of auto absorb
+            new AbsorbGUI(plugin, player, type).open();
+            // Reset shift count
+            plugin.getAbsorbManager().incrementShift(player); // will reset internally or we can add reset method
         }
     }
 }
