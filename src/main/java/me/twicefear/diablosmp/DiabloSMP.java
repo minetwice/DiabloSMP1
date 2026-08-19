@@ -2,6 +2,7 @@ package me.twicefear.diablosmp;
 
 import me.twicefear.diablosmp.stone.StoneItemManager;
 import me.twicefear.diablosmp.user.UserManager;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class DiabloSMP extends JavaPlugin {
@@ -45,6 +46,11 @@ public class DiabloSMP extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (userManager != null) {
+            for (Player player : getServer().getOnlinePlayers()) {
+                userManager.savePlayerData(player);
+            }
+        }
         getLogger().info("DiabloSMP Plugin disabled.");
     }
 
