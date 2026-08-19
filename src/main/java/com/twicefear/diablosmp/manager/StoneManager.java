@@ -30,6 +30,7 @@ public class StoneManager {
         this.activeKey = new NamespacedKey(plugin, "diablo_stone_active");
     }
 
+    @SuppressWarnings("deprecation")
     public ItemStack createStone(StoneType type) {
         ItemStack item = new ItemStack(Material.PAPER);
         ItemMeta meta = item.getItemMeta();
@@ -49,7 +50,7 @@ public class StoneManager {
         lore.add(Component.empty());
         lore.add(Component.text("\u00a78\u00bb \u00a77Shift \u00a763x \u00a77to absorb").decoration(TextDecoration.ITALIC, false));
         meta.lore(lore);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ITEM_SPECIFICS);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         meta.addEnchant(Enchantment.UNBREAKING, 1, true);
         meta.getPersistentDataContainer().set(stoneKey, PersistentDataType.STRING, type.id());
         meta.getPersistentDataContainer().set(activeKey, PersistentDataType.BYTE, (byte) 0);
@@ -57,6 +58,7 @@ public class StoneManager {
         return item;
     }
 
+    @SuppressWarnings("deprecation")
     public ItemStack createAbsorbedStone(StoneType type) {
         ItemStack item = createStone(type);
         ItemMeta meta = item.getItemMeta();
