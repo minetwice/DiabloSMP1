@@ -1,0 +1,25 @@
+# DiabloSMP Configuration
+smp:
+  name: "DiabloSmp"
+  started: false
+  grace_period_seconds: 300
+  world_border:
+    grace_size: 20.0
+    active_size: 20000.0 # set to -1 or "infinite" for no border limit
+  announcements:
+    - "&e&lWELCOME TO THE DIABLO SMP!"
+    - "&c&lTHE GRACE PERIOD HAS ENDED!"
+    - "&a&lFIGHT FOR SURVIVAL AND CLAIM THE DIABLO STONES!"
+
+protection:
+  allow_drop_from_inventory: false
+  drop_on_death: true
+  allow_store_in_chests: false
+
+first_join:
+  enabled: true
+  animation_duration_seconds: 8
+  give_random_stone: true
+
+cooldowns:
+  display_in_actionbar: true

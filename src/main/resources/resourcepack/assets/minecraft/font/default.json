@@ -1,0 +1,234 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/question_mark.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue000"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/ability_ready.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue001"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_0.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue002"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_10.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue003"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_20.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue004"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_30.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue005"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_40.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue006"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_50.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue007"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_60.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue008"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_70.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue009"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_80.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00a"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_90.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00b"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_100.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00c"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_earth_smasher.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue011"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_flame_lord.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue012"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_void_walker.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue013"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_frost_monarch.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue014"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_lightning_overlord.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue015"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_shadow_reaper.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue016"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_venom_hydra.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue017"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_celestial_warden.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue018"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_wind_tempest.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue019"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_blood_berserker.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01a"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_gravity_master.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01b"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_time_weaver.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01c"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_phantom_assassin.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01d"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_iron_titan.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01e"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/stone_chaos_archon.png",
+            "ascent": 8,
+            "height": 8,
+            "chars": [
+                "\ue01f"
+            ]
+        }
+    ]
+}

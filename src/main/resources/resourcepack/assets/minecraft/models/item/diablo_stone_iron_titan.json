@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "minecraft:item/diablo_stone_iron_titan"
+  }
+}
