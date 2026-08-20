@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Transformation;
-import org.joml.AxisAngle4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.HashMap;
@@ -192,15 +192,15 @@ public class AbsorptionListener implements Listener {
         Color pColor = getStoneParticleColor(stoneType);
 
         // Spawn ItemDisplay for stone floating & orbiting
-        ItemStack stoneItem = plugin.getStoneItemManager().createStone(stoneType);
+        ItemStack stoneItem = plugin.getStoneItemManager().createStoneItem(stoneType);
         Location startLoc = player.getLocation().add(0, 0.8, 0);
         ItemDisplay itemDisplay = player.getWorld().spawn(startLoc, ItemDisplay.class, display -> {
             display.setItemStack(stoneItem);
             display.setTransformation(new Transformation(
                     new Vector3f(0, 0, 0),
-                    new AxisAngle4f(0, 0, 1, 0),
+                    new Quaternionf(),
                     new Vector3f(0.5f, 0.5f, 0.5f),
-                    new AxisAngle4f(0, 0, 1, 0)
+                    new Quaternionf()
             ));
         });
 
