@@ -4,6 +4,7 @@ import me.twicefear.diablosmp.DiabloSMP;
 import me.twicefear.diablosmp.ability.DiabloAbility;
 import me.twicefear.diablosmp.stone.StoneType;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -37,7 +38,8 @@ public class FlameLordAbility implements DiabloAbility {
     public void execute(Player player) {
         // Primary: Infernal Dragon Strike
         player.sendMessage(ChatColor.RED + "[Flame Lord] " + ChatColor.GOLD + "INFERNAL DRAGON STRIKE!");
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.2f, 0.8f);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.5f, 0.7f);
+        player.playSound(player.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1.2f, 0.9f);
 
         Vector direction = player.getLocation().getDirection().normalize();
         Location startLoc = player.getEyeLocation();
@@ -48,28 +50,39 @@ public class FlameLordAbility implements DiabloAbility {
 
             @Override
             public void run() {
-                if (step >= 20) {
+                if (step >= 25) {
                     cancel();
                     return;
                 }
                 step++;
                 current.add(direction.clone().multiply(1.5));
 
-                // Dragon Spiral Particles
-                double angle = step * 0.5;
-                double r = 1.2;
-                Location p1 = current.clone().add(Math.cos(angle) * r, Math.sin(angle) * r, Math.sin(angle) * r);
-                Location p2 = current.clone().add(-Math.cos(angle) * r, -Math.sin(angle) * r, -Math.sin(angle) * r);
+                // Triple-helix dragon fire spiral
+                double angle = step * 0.6;
+                double r = 1.5;
+                for (int h = 0; h < 3; h++) {
+                    double offsetAngle = angle + (h * Math.PI * 2 / 3);
+                    double x = Math.cos(offsetAngle) * r;
+                    double y = Math.sin(offsetAngle) * r;
+                    double z = Math.sin(offsetAngle) * r;
+                    Location pLoc = current.clone().add(x, y, z);
 
-                current.getWorld().spawnParticle(Particle.FLAME, p1, 10, 0.1, 0.1, 0.1, 0.05);
-                current.getWorld().spawnParticle(Particle.DRAGON_BREATH, p2, 10, 0.1, 0.1, 0.1, 0.05);
-                current.getWorld().spawnParticle(Particle.LAVA, current, 5, 0.2, 0.2, 0.2);
+                    current.getWorld().spawnParticle(Particle.FLAME, pLoc, 12, 0.1, 0.1, 0.1, 0.05);
+                    current.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, pLoc, 6, 0.1, 0.1, 0.1, 0.05);
+                    current.getWorld().spawnParticle(
+                            Particle.DUST, pLoc, 5, 0.05, 0.05, 0.05,
+                            new Particle.DustOptions(Color.fromRGB(255, 60, 0), 1.5f)
+                    );
+                }
 
-                for (Entity e : current.getWorld().getNearbyEntities(current, 2.5, 2.5, 2.5)) {
+                current.getWorld().spawnParticle(Particle.LAVA, current, 10, 0.3, 0.3, 0.3);
+                current.getWorld().spawnParticle(Particle.FLASH, current, 1);
+
+                for (Entity e : current.getWorld().getNearbyEntities(current, 3.0, 3.0, 3.0)) {
                     if (e != player && e instanceof LivingEntity le) {
-                        le.damage(12.0, player);
-                        le.setFireTicks(100);
-                        le.setVelocity(direction.clone().multiply(1.2).setY(0.4));
+                        le.damage(14.0, player);
+                        le.setFireTicks(120);
+                        le.setVelocity(direction.clone().multiply(1.4).setY(0.5));
                     }
                 }
             }
@@ -80,33 +93,43 @@ public class FlameLordAbility implements DiabloAbility {
         // Secondary: Hellfire Supernova
         player.sendMessage(ChatColor.DARK_RED + "[Flame Lord] " + ChatColor.RED + "HELLFIRE SUPERNOVA!");
         Location center = player.getLocation();
-        center.getWorld().playSound(center, Sound.ENTITY_GENERIC_EXPLODE, 1.5f, 0.5f);
+        center.getWorld().playSound(center, Sound.ENTITY_GENERIC_EXPLODE, 2.0f, 0.5f);
+        center.getWorld().playSound(center, Sound.ITEM_TRIDENT_THUNDER, 1.5f, 0.8f);
 
         new BukkitRunnable() {
             int radius = 1;
 
             @Override
             public void run() {
-                if (radius > 12) {
+                if (radius > 15) {
                     cancel();
                     return;
                 }
 
-                for (int i = 0; i < 360; i += 10) {
+                // Expanding double shockwave ring
+                for (int i = 0; i < 360; i += 6) {
                     double rad = Math.toRadians(i);
                     double x = radius * Math.cos(rad);
                     double z = radius * Math.sin(rad);
-                    Location pLoc = center.clone().add(x, 0.5, z);
 
-                    center.getWorld().spawnParticle(Particle.FLAME, pLoc, 3, 0.1, 0.1, 0.1, 0.02);
-                    center.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, pLoc, 2, 0.1, 0.1, 0.1, 0.02);
+                    Location pLoc1 = center.clone().add(x, 0.5, z);
+                    Location pLoc2 = center.clone().add(x * 0.8, 1.2, z * 0.8);
+
+                    center.getWorld().spawnParticle(Particle.FLAME, pLoc1, 4, 0.1, 0.1, 0.1, 0.03);
+                    center.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, pLoc2, 3, 0.1, 0.1, 0.1, 0.03);
+                    center.getWorld().spawnParticle(
+                            Particle.DUST, pLoc1, 2, 0.05, 0.05, 0.05,
+                            new Particle.DustOptions(Color.fromRGB(255, 100, 0), 1.8f)
+                    );
                 }
 
-                for (Entity e : center.getWorld().getNearbyEntities(center, radius, 3, radius)) {
+                center.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, center, 2);
+
+                for (Entity e : center.getWorld().getNearbyEntities(center, radius, 4, radius)) {
                     if (e != player && e instanceof LivingEntity le) {
-                        le.damage(16.0, player);
-                        le.setFireTicks(160);
-                        le.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 1));
+                        le.damage(18.0, player);
+                        le.setFireTicks(200);
+                        le.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 120, 1));
                     }
                 }
 
