@@ -5,9 +5,12 @@ import me.twicefear.diablosmp.stone.StoneType;
 import me.twicefear.diablosmp.user.UserData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +22,9 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Transformation;
+import org.joml.AxisAngle4f;
+import org.joml.Vector3f;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -183,50 +189,130 @@ public class AbsorptionListener implements Listener {
 
     private void startAbsorptionAnimation(Player player, StoneType stoneType) {
         UserData userData = plugin.getUserManager().getUserData(player.getUniqueId());
+        Color pColor = getStoneParticleColor(stoneType);
+
+        // Spawn ItemDisplay for stone floating & orbiting
+        ItemStack stoneItem = plugin.getStoneItemManager().createStone(stoneType);
+        Location startLoc = player.getLocation().add(0, 0.8, 0);
+        ItemDisplay itemDisplay = player.getWorld().spawn(startLoc, ItemDisplay.class, display -> {
+            display.setItemStack(stoneItem);
+            display.setTransformation(new Transformation(
+                    new Vector3f(0, 0, 0),
+                    new AxisAngle4f(0, 0, 1, 0),
+                    new Vector3f(0.5f, 0.5f, 0.5f),
+                    new AxisAngle4f(0, 0, 1, 0)
+            ));
+        });
 
         new BukkitRunnable() {
             int ticks = 0;
-            final int maxTicks = 60;
+            final int maxTicks = 100; // 5 seconds total animation
 
             @Override
             public void run() {
-                if (!player.isOnline()) {
+                if (!player.isOnline() || itemDisplay.isDead()) {
+                    if (!itemDisplay.isDead()) itemDisplay.remove();
                     cancel();
                     return;
                 }
 
                 ticks++;
-                double radius = 1.5 - (ticks * 0.02);
-                if (radius < 0.2) radius = 0.2;
 
-                double angle = ticks * 0.4;
-                double x = radius * Math.cos(angle);
-                double z = radius * Math.sin(angle);
-                double y = (ticks * 0.03);
+                if (ticks <= 60) {
+                    // Phase 1: Stone orbits player in a rising spiral out of hand to above head
+                    double progress = ticks / 60.0;
+                    double radius = 1.2 * (1.0 - (progress * 0.5));
+                    double angle = ticks * 0.3;
+                    double x = radius * Math.cos(angle);
+                    double z = radius * Math.sin(angle);
+                    double y = 0.8 + (progress * 1.4); // Moves from 0.8 to 2.2 height (above head)
 
-                player.getWorld().spawnParticle(
-                        Particle.TOTEM_OF_UNDYING,
-                        player.getLocation().add(x, y, z),
-                        5, 0.05, 0.05, 0.05, 0.05
-                );
-                player.getWorld().spawnParticle(
-                        Particle.FLAME,
-                        player.getLocation().add(-x, y, -z),
-                        3, 0.05, 0.05, 0.05, 0.02
-                );
+                    Location currentLoc = player.getLocation().add(x, y, z);
+                    itemDisplay.teleport(currentLoc);
 
-                player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 0.5f, 0.8f + (ticks / 60.0f));
+                    // Particle swirl
+                    player.getWorld().spawnParticle(
+                            Particle.DUST,
+                            currentLoc,
+                            3, 0.05, 0.05, 0.05,
+                            new Particle.DustOptions(pColor, 1.2f)
+                    );
+                    player.getWorld().spawnParticle(
+                            Particle.END_ROD,
+                            currentLoc,
+                            1, 0.02, 0.02, 0.02, 0.01
+                    );
 
-                if (ticks >= maxTicks) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 0.5f, (float) (0.8 + (progress * 0.8)));
+
+                } else if (ticks <= 90) {
+                    // Phase 2: Stone rests above player's head and forms the glowing Angel Head Ring / Halo
+                    Location headTop = player.getLocation().add(0, 2.25, 0);
+                    itemDisplay.teleport(headTop);
+
+                    // Draw Angel Head Ring (Halo) around head with stone-specific particle colors
+                    double ringRadius = 0.55;
+                    for (int i = 0; i < 16; i++) {
+                        double ringAngle = (i / 16.0) * 2 * Math.PI + (ticks * 0.1);
+                        double rx = ringRadius * Math.cos(ringAngle);
+                        double rz = ringRadius * Math.sin(ringAngle);
+                        player.getWorld().spawnParticle(
+                                Particle.DUST,
+                                headTop.clone().add(rx, 0, rz),
+                                1, 0, 0, 0,
+                                new Particle.DustOptions(pColor, 1.4f)
+                        );
+                    }
+                    player.getWorld().spawnParticle(
+                            Particle.GLOW,
+                            headTop,
+                            2, 0.2, 0.05, 0.2, 0.02
+                    );
+
+                    player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 0.6f, 1.5f);
+
+                } else {
+                    // Phase 3: Final absorption flash and crown halo burst
+                    itemDisplay.remove();
                     userData.setAbsorbedStone(stoneType);
                     plugin.getUserManager().savePlayerData(player);
+
+                    Location headTop = player.getLocation().add(0, 2.25, 0);
+                    player.getWorld().spawnParticle(Particle.FLASH, headTop, 1);
+                    player.getWorld().spawnParticle(
+                            Particle.DUST,
+                            headTop,
+                            40, 0.6, 0.2, 0.6,
+                            new Particle.DustOptions(pColor, 2.0f)
+                    );
+
                     player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "[DiabloSMP] " +
                             ChatColor.GREEN + "You have successfully absorbed " + stoneType.getDisplayName() + ChatColor.GREEN + " into your body!");
                     player.playSound(player.getLocation(), Sound.ITEM_TRIDENT_THUNDER, 1.0f, 1.2f);
-                    player.getWorld().spawnParticle(Particle.FLASH, player.getLocation().add(0, 1, 0), 1);
+                    player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 0.9f, 1.1f);
                     cancel();
                 }
             }
         }.runTaskTimer(plugin, 0L, 1L);
+    }
+
+    private Color getStoneParticleColor(StoneType type) {
+        return switch (type) {
+            case EARTH_SMASHER -> Color.fromRGB(180, 100, 30);
+            case FLAME_LORD -> Color.fromRGB(230, 40, 20);
+            case VOID_WALKER -> Color.fromRGB(120, 20, 200);
+            case FROST_MONARCH -> Color.fromRGB(60, 200, 245);
+            case LIGHTNING_OVERLORD -> Color.fromRGB(250, 230, 40);
+            case SHADOW_REAPER -> Color.fromRGB(80, 80, 90);
+            case VENOM_HYDRA -> Color.fromRGB(30, 180, 50);
+            case CELESTIAL_WARDEN -> Color.fromRGB(255, 215, 80);
+            case WIND_TEMPEST -> Color.fromRGB(220, 240, 255);
+            case BLOOD_BERSERKER -> Color.fromRGB(170, 0, 30);
+            case GRAVITY_MASTER -> Color.fromRGB(190, 80, 220);
+            case TIME_WEAVER -> Color.fromRGB(40, 110, 230);
+            case PHANTOM_ASSASSIN -> Color.fromRGB(100, 110, 120);
+            case IRON_TITAN -> Color.fromRGB(0, 160, 180);
+            case CHAOS_ARCHON -> Color.fromRGB(240, 50, 180);
+        };
     }
 }

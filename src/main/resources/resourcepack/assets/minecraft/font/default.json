@@ -20,6 +20,83 @@
         },
         {
             "type": "bitmap",
+            "file": "minecraft:font/bar_0.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue002"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_10.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue003"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_20.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue004"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_30.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue005"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_40.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue006"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_50.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue007"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_60.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue008"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_70.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue009"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_80.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00a"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_90.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00b"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/bar_100.png",
+            "ascent": 7,
+            "height": 8,
+            "chars": ["\ue00c"]
+        },
+        {
+            "type": "bitmap",
             "file": "minecraft:font/stone_earth_smasher.png",
             "ascent": 8,
             "height": 8,
