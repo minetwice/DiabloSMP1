@@ -84,13 +84,13 @@ public class AbilityExecutor {
         if (r == null || !(r.getHitEntity() instanceof LivingEntity)) { p.sendMessage("§7§l[ECW] §cNo target."); return; }
         LivingEntity t = (LivingEntity)r.getHitEntity(); Location tl = t.getLocation(); List<Block> ice = new ArrayList<>();
         for (int x=-1;x<=1;x++) for (int y=0;y<=2;y++) for (int z=-1;z<=1;z++) { Block b = tl.clone().add(x,y,z).getBlock(); if (b.getType()==Material.AIR) { b.setType(Material.BLUE_ICE); ice.add(b); } }
-        t.setVelocity(new Vector(0,0,0)); t.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, dur*20, 255));
+        t.setVelocity(new Vector(0,0,0)); t.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, dur*20, 255));
         new BukkitRunnable() { public void run() { for (Block b : ice) if (b.getType()==Material.BLUE_ICE) b.setType(Material.AIR); } }.runTaskLater(plugin, dur*20L);
     }
 
     private void earthquakeBarrier(Player p, Map<String,Object> c) {
         int dur = toI(c.getOrDefault("invincibility_duration",4)); boolean raise = toB(c.getOrDefault("raise_blocks",true));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, dur*20, 255));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, dur*20, 255));
         if (raise) { Location l = p.getLocation(); int r = 3; for (int x=-r;x<=r;x++) for (int z=-r;z<=r;z++) { if (x==0&&z==0) continue; if (x*x+z*z<=r*r) { Block b = l.clone().add(x,0,z).getBlock(); if (b.getType()==Material.AIR) b.setType(Material.COBBLESTONE); } } }
     }
 
@@ -108,7 +108,7 @@ public class AbilityExecutor {
         RayTraceResult r = p.getWorld().rayTraceEntities(eye, dir, 25, 0.5, e -> e instanceof LivingEntity && !e.equals(p));
         if (r == null || !(r.getHitEntity() instanceof LivingEntity)) { p.sendMessage("§7§l[ECW] §cNo target."); return; }
         LivingEntity t = (LivingEntity)r.getHitEntity(); Location tl = t.getLocation(); Vector f = tl.getDirection();
-        p.teleport(tl.clone().subtract(f.clone().multiply(1.5)).setY(tl.getY()));
+        Location dest = tl.clone().subtract(f.clone().multiply(1.5)); dest.setY(tl.getY()); p.teleport(dest);
         t.damage(15.0, p); t.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, wd, wl));
     }
 

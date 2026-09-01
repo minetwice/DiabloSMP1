@@ -37,9 +37,9 @@ public class PassiveEffectTask extends BukkitRunnable {
         String t = v.getPassiveType(); Map<String,Object> c = v.getPassiveConfig();
         switch (t) {
             case "WATER_BREATHING_DOLPHIN" -> { apply(p, PotionEffectType.WATER_BREATHING, toI(c.getOrDefault("water_breathing_level",1))-1); apply(p, PotionEffectType.DOLPHINS_GRACE, toI(c.getOrDefault("dolphin_grace_level",1))-1); }
-            case "RESISTANCE_KNOCKBACK" -> apply(p, PotionEffectType.DAMAGE_RESISTANCE, toI(c.getOrDefault("resistance_level",2))-1);
-            case "ATTACK_SPEED_BURN" -> apply(p, PotionEffectType.FAST_DIGGING, Math.max((int)Math.round(toD(c.getOrDefault("attack_speed_bonus",0.25))*4)-1, 0));
-            case "SPEED_JUMP" -> { apply(p, PotionEffectType.SPEED, toI(c.getOrDefault("speed_level",3))-1); apply(p, PotionEffectType.JUMP, toI(c.getOrDefault("jump_level",2))-1); }
+            case "RESISTANCE_KNOCKBACK" -> apply(p, PotionEffectType.RESISTANCE, toI(c.getOrDefault("resistance_level",2))-1);
+            case "ATTACK_SPEED_BURN" -> apply(p, PotionEffectType.HASTE, Math.max((int)Math.round(toD(c.getOrDefault("attack_speed_bonus",0.25))*4)-1, 0));
+            case "SPEED_JUMP" -> { apply(p, PotionEffectType.SPEED, toI(c.getOrDefault("speed_level",3))-1); apply(p, PotionEffectType.JUMP_BOOST, toI(c.getOrDefault("jump_level",2))-1); }
             case "REGEN_LIGHT" -> apply(p, PotionEffectType.REGENERATION, toI(c.getOrDefault("regen_level",1))-1);
             case "TRI_BALANCE" -> apply(p, PotionEffectType.SPEED, Math.max((int)Math.round(toD(c.getOrDefault("speed_bonus",0.15))*6)-1, 0));
             default -> {}
