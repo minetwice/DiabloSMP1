@@ -40,7 +40,7 @@ jobs:
         if: steps.gradle-build.outcome == 'failure'
         run: |
           tail -200 /tmp/gradle-output.log > /tmp/error-output.txt
-          jq -n --rawfile body /tmp/error-output.txt '{body: "## Build Failed - Gradle Output (last 200 lines)\n```\n\(.body)\n```"}' > /tmp/comment.json
+          jq -n --rawfile body /tmp/error-output.txt '{body: "## Build Failed - Gradle Output (last 200 lines)\n```\n\($body)\n```"}' > /tmp/comment.json
           curl -s -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
