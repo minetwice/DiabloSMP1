@@ -20,13 +20,14 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.5'
+      - name: Install Gradle 8.5
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip -q gradle-8.5-bin.zip -d /opt
+          echo "/opt/gradle-8.5/bin" >> $GITHUB_PATH
 
       - name: Build with Gradle
-        run: gradle build --no-daemon
+        run: gradle build --stacktrace --no-daemon
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4

@@ -5,11 +5,8 @@ plugins {
 group = 'com.sdmine'
 version = '1.0.0'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -30,7 +27,7 @@ dependencies {
 processResources {
     filteringCharset = 'UTF-8'
     filesMatching('plugin.yml') {
-        expand(project.properties)
+        expand(version: version)
     }
 }
 
