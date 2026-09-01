@@ -1,29 +1,20 @@
-name: DiabloSMP
-version: '${project.version}'
-main: com.twicefear.diablosmp.DiabloSMP
-api-version: '1.21'
-author: Twicefear
-description: Custom Abilities Plugin powered by Aethelion Engine
-depend: [Aethelion]
-softdepend: []
-
+name: ElementalCoreWeaponSystem
+version: ${version}
+main: com.sdmine.elementalcore.ElementalCorePlugin
+api-version: '1.20'
+author: SD MINE
+description: Elemental Core Weapon System — modular socket-based elemental weapons inspired by Tensura.
+softdepend: [ExecutableItems, SCore]
 commands:
-  ability:
-    description: Give yourself an ability item
-    usage: /ability give <name>
-    permission: diablosmp.ability.give
-  abilities:
-    description: List all available abilities
-    usage: /abilities
-    permission: diablosmp.ability.list
-
+  elemental:
+    description: Main command for the Elemental Core Weapon System.
+    usage: /elemental <socket|reload|givecore|giveblade>
+    permission: elementalcore.use
+    aliases: [ecw, elem]
 permissions:
-  diablosmp.ability.give:
-    description: Allows giving ability items
+  elementalcore.use:
+    description: Allows use of basic Elemental Core commands.
+    default: true
+  elementalcore.admin:
+    description: Allows admin commands (reload, give items).
     default: op
-  diablosmp.ability.list:
-    description: Allows listing abilities
-    default: true
-  diablosmp.ability.use:
-    description: Allows using abilities
-    default: true

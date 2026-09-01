@@ -1,29 +1,416 @@
-# DiabloSMP Configuration
+# ============================================================
+# Elemental Core Weapon System — Configuration
 # ============================================================
 
-# Global ability cooldown in seconds (applied per-ability)
-default-cooldown: 15
+settings:
+  debug: false
+  locale: en
 
-# Whether abilities can be interrupted by taking damage
-interruptible: true
+base_weapon:
+  material: NETHERITE_SWORD
+  display_name: "&l&6Elemental Modular Blade"
+  custom_model_data: 10001
+  lore:
+    - "&7A legendary blade built to hold elemental cores."
+    - "&7Sockets: [Empty] [Empty] [Empty]"
+    - ""
+    - "&8&oInsert elemental cores to unlock weapon variants."
 
-# Maximum abilities a player can have active simultaneously
-max-active-abilities: 1
+gui:
+  title: "&8&lElemental Socket Menu"
+  size: 9
+  socket_slots: [4, 5, 6]
+  result_slot: 2
+  filler_material: GRAY_STAINED_GLASS_PANE
+  filler_display_name: "&7"
 
-# Debug mode - prints extra console info
-debug: false
+sounds:
+  socket_insert:
+    sound: BLOCK_ANVIL_USE
+    pitch: 1.5
+    volume: 1.0
+  socket_remove:
+    sound: ITEM_ARMOR_EQUIP_GENERIC
+    pitch: 1.0
+    volume: 1.0
 
-# Ability item settings
-ability-item:
-  material: NETHER_STAR
-  custom-model-data: 0
-  glow: true
+first_join:
+  give_blade: true
+  give_random_core: true
+  random_core_count: 1
 
-# Cooldown message
-messages:
-  cooldown: "&cThis ability is on cooldown for &e{seconds}s&c!"
-  no-permission: "&cYou don't have permission to use this ability."
-  given: "&aYou received the ability: &e{name}&a!"
-  not-found: "&cAbility not found: &e{name}"
-  list-header: "&6=== &eAvailable Abilities &6==="
-  list-entry: "&7- &e{name} &7: {description}"
+cores:
+  flame:
+    display_name: "&cCore of Flame"
+    material: MAGMA_CREAM
+    custom_model_data: 20001
+    color: RED
+    symbol: "Flame"
+    lore:
+      - "&7A burning core of pure fire energy."
+  water:
+    display_name: "&9Core of Water"
+    material: HEART_OF_THE_SEA
+    custom_model_data: 20002
+    color: BLUE
+    symbol: "Water"
+    lore:
+      - "&7A flowing core of ocean energy."
+  tempest:
+    display_name: "&aCore of Tempest"
+    material: EMERALD
+    custom_model_data: 20003
+    color: GREEN
+    symbol: "Tempest"
+    lore:
+      - "&7A swirling core of wind energy."
+  terra:
+    display_name: "&eCore of Terra"
+    material: GOLD_NUGGET
+    custom_model_data: 20004
+    color: YELLOW
+    symbol: "Terra"
+    lore:
+      - "&7A sturdy core of earth energy."
+  void:
+    display_name: "&5Core of Void"
+    material: ENDER_PEARL
+    custom_model_data: 20005
+    color: PURPLE
+    symbol: "Void"
+    lore:
+      - "&7A dark core of void energy."
+  light:
+    display_name: "&fCore of Light"
+    material: QUARTZ
+    custom_model_data: 20006
+    color: WHITE
+    symbol: "Light"
+    lore:
+      - "&7A radiant core of light energy."
+
+recipes:
+  core_flame:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: BLAZE_POWDER
+      B: MAGMA_CREAM
+      C: DIAMOND
+  core_water:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: LAPIS_BLOCK
+      B: PRISMARINE_CRYSTALS
+      C: HEART_OF_THE_SEA
+  core_tempest:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: FEATHER
+      B: PHANTOM_MEMBRANE
+      C: EMERALD
+  core_terra:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: STONE
+      B: IRON_INGOT
+      C: GOLD_INGOT
+  core_void:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: OBSIDIAN
+      B: END_STONE
+      C: ENDER_EYE
+  core_light:
+    enabled: true
+    type: shaped
+    shape:
+      - "BAB"
+      - "ACA"
+      - "BAB"
+    ingredients:
+      A: QUARTZ
+      B: GLOWSTONE_DUST
+      C: NAUTILUS_SHELL
+
+variants:
+  triple_fire:
+    combination:
+      flame: 3
+    display_name: "&c&lInfernal Destroyer"
+    custom_model_data: 30001
+    passive:
+      type: FIRE_ASPECT
+      level: 2
+      burn_duration: 6
+    active:
+      type: IGNITION_BURST
+      radius: 5
+      cooldown: 15
+      damage: 8.0
+      light_fire: true
+    particles:
+      type: FLAME
+      continuous: true
+    sound: ENTITY_BLAZE_SHOOT
+
+  thermal_pressure:
+    combination:
+      flame: 2
+      water: 1
+    display_name: "&6&lThermal Pressure Blade"
+    custom_model_data: 30002
+    passive:
+      type: STEAM_CLOUD
+      blindness_level: 2
+      slowness_level: 2
+      duration: 4
+    active:
+      type: SCALDING_ERUPTION
+      cooldown: 18
+      knockback: true
+      armor_reduction: 0.20
+      armor_reduction_duration: 8
+    particles:
+      type: CAMPFIRE_SMOKE_WATER
+      continuous: true
+    sound: BLOCK_FIRE_EXTINGUISH
+
+  boiling_hydro:
+    combination:
+      flame: 1
+      water: 2
+    display_name: "&3&lBoiling Hydro Blade"
+    custom_model_data: 30003
+    passive:
+      type: ANTI_AQUATIC
+      damage_bonus_multiplier: 1.5
+      wither_level: 1
+      wither_duration: 3
+    active:
+      type: GEYSER_LAUNCH
+      cooldown: 12
+      damage: 10.0
+      launch_up: true
+    particles:
+      type: WATER_DRIP_LAVA_SPARK
+      continuous: true
+    sound: ENTITY_PLAYER_SPLASH
+
+  triple_water:
+    combination:
+      water: 3
+    display_name: "&9&lOceanic Tsunami"
+    custom_model_data: 30004
+    passive:
+      type: WATER_BREATHING_DOLPHIN
+      water_breathing_level: 1
+      dolphin_grace_level: 1
+    active:
+      type: TSUNAMI_WAVE
+      cooldown: 10
+      radius: 7
+      knockback_velocity: 1.5
+    particles:
+      type: WATER_SPLASH_BUBBLE
+      continuous: true
+    sound: ENTITY_PLAYER_SPLASH
+
+  firestorm_razor:
+    combination:
+      flame: 1
+      tempest: 2
+    display_name: "&e&lFirestorm Razor"
+    custom_model_data: 30005
+    passive:
+      type: ATTACK_SPEED_BURN
+      attack_speed_bonus: 0.25
+      burn_ticks: 20
+    active:
+      type: FIRE_TORNADO
+      cooldown: 20
+      duration: 4
+      pull_radius: 6
+      damage: 5.0
+    particles:
+      type: FLAME_SWIRL_CLOUD
+      continuous: true
+    sound: ENTITY_BLAZE_SHOOT
+
+  glacial_blizzard:
+    combination:
+      water: 1
+      tempest: 2
+    display_name: "&b&lGlacial Blizzard"
+    custom_model_data: 30006
+    passive:
+      type: FROST_SLOW
+      slow_level: 2
+      slow_multiplier: 0.6
+    active:
+      type: ABSOLUTE_ZERO
+      cooldown: 22
+      freeze_duration: 3
+    particles:
+      type: SNOWFLAKE_CYAN
+      continuous: true
+    sound: BLOCK_GLASS_BREAK
+
+  triple_earth:
+    combination:
+      terra: 3
+    display_name: "&2&lTitan's Fortress"
+    custom_model_data: 30007
+    passive:
+      type: RESISTANCE_KNOCKBACK
+      resistance_level: 2
+      knockback_resistance: 1.0
+    active:
+      type: EARTHQUAKE_BARRIER
+      cooldown: 30
+      invincibility_duration: 4
+      raise_blocks: true
+    particles:
+      type: GREEN_SPARK_CRACK
+      continuous: true
+    sound: BLOCK_STONE_PLACE
+
+  magma_eruptor:
+    combination:
+      flame: 1
+      terra: 2
+    display_name: "&c&lMagma Eruptor"
+    custom_model_data: 30008
+    passive:
+      type: LAVA_CRIT
+      crit_chance: 0.30
+    active:
+      type: VOLCANIC_PILLAR
+      cooldown: 16
+      damage: 12.0
+      launch_up: true
+      set_on_fire: true
+      fire_duration: 5
+    particles:
+      type: LAVA_POP_CRIT
+      continuous: true
+    sound: BLOCK_LAVA_POP
+
+  abyssal_eclipse:
+    combination:
+      void: 1
+      flame: 1
+      tempest: 1
+    display_name: "&5&lAbyssal Eclipse"
+    custom_model_data: 30009
+    passive:
+      type: LIFE_STEAL
+      life_steal_percent: 0.12
+    active:
+      type: SHADOW_STEP_STRIKE
+      cooldown: 14
+      wither_level: 2
+      wither_duration: 5
+    particles:
+      type: DRAGON_BREATH_PORTAL
+      continuous: true
+    sound: ENTITY_ENDERMAN_TELEPORT
+
+  triple_wind:
+    combination:
+      tempest: 3
+    display_name: "&a&lSonic Hurricane"
+    custom_model_data: 30010
+    passive:
+      type: SPEED_JUMP
+      speed_level: 3
+      jump_level: 2
+    active:
+      type: AIR_CUT_DASH
+      cooldown: 8
+      dash_distance: 10
+      damage: 7.0
+    particles:
+      type: SWEEP_CLOUD
+      continuous: true
+    sound: ENTITY_BREEZE_SHOOT
+
+  triple_light:
+    combination:
+      light: 3
+    display_name: "&f&lDivine Radiance"
+    custom_model_data: 30011
+    passive:
+      type: REGEN_LIGHT
+      regen_level: 1
+    active:
+      type: HOLY_BEAM
+      cooldown: 20
+      damage: 15.0
+      heal_allies: true
+      heal_amount: 6.0
+      beam_range: 30
+    particles:
+      type: END_ROD_GLOWSTONE
+      continuous: true
+    sound: BLOCK_BEACON_ACTIVATE
+
+  tri_element_balance:
+    combination:
+      flame: 1
+      water: 1
+      terra: 1
+    display_name: "&d&lTri-Element Balance"
+    custom_model_data: 30012
+    passive:
+      type: TRI_BALANCE
+      damage_bonus: 0.15
+      speed_bonus: 0.15
+      fire_immune: true
+    active:
+      type: ELEMENTAL_OVERLOAD
+      cooldown: 25
+      damage: 10.0
+      burn_duration: 5
+      regen_duration: 5
+    particles:
+      type: TRI_COLOR_BURST
+      continuous: true
+    sound: BLOCK_AMETHYST_BLOCK_CHIME
+
+  default_fallback:
+    display_name: "&7&lUnstable Blade"
+    custom_model_data: 30000
+    passive:
+      type: NONE
+    active:
+      type: NONE
+      cooldown: 0
+    particles:
+      type: NONE
+      continuous: false
+    sound: BLOCK_NOTE_BLOCK_BASS
