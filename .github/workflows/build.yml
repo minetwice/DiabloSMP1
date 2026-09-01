@@ -27,9 +27,21 @@ jobs:
           echo "/opt/gradle-8.5/bin" >> $GITHUB_PATH
 
       - name: Build with Gradle
-        run: gradle build --stacktrace --info --no-daemon 2>&1 | tail -100
+        id: gradle-build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          gradle build --stacktrace --no-daemon 2>&1 | tee /tmp/gradle-output.log
+
+      - name: Show build errors
+        if: steps.gradle-build.outcome == 'failure'
+        run: |
+          echo "=== GRADLE BUILD FAILED - Last 150 lines ==="
+          tail -150 /tmp/gradle-output.log
+          exit 1
 
       - name: Upload JAR artifact
+        if: steps.gradle-build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: ElementalCoreWeaponSystem
