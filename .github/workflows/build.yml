@@ -43,12 +43,23 @@ jobs:
           script: |
             const fs = require('fs');
             const output = fs.readFileSync('/tmp/gradle-output.log', 'utf8');
-            const lines = output.split("\n").slice(-200).join("\n");
+            const allLines = output.split("\n");
+            // Extract lines that contain compilation errors
+            const errorLines = allLines.filter(l =>
+              l.includes("error:") ||
+              l.includes("FAILED") ||
+              l.includes("cannot find symbol") ||
+              l.includes("symbol:") ||
+              l.includes("location:") ||
+              l.includes("warning:") ||
+              l.includes(".java:")
+            );
+            const result = errorLines.length > 0 ? errorLines.join("\n") : allLines.slice(0, 100).join("\n");
             await github.rest.repos.createCommitComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               commit_sha: context.sha,
-              body: "## Build Failed - Gradle Output (last 200 lines)\n```\n" + lines + "\n```"
+              body: "## Build Failed - Compilation Errors\n```\n" + result + "\n```"
             });
             core.setFailed("Build failed - see comment above for error details");
 
