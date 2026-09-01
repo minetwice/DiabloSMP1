@@ -27,7 +27,7 @@ jobs:
           echo "/opt/gradle-8.5/bin" >> $GITHUB_PATH
 
       - name: Build with Gradle
-        run: gradle build --stacktrace --no-daemon
+        run: gradle build --stacktrace --info --no-daemon 2>&1 | tail -100
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
