@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class WeaponVariant {
     private final String id;
-    private final String combinationKey;
+    private String combinationKey;
     private final Map<CoreType, Integer> combination;
     private String displayName;
     private int customModelData;
