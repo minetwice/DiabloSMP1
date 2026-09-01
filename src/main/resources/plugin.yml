@@ -1,7 +1,7 @@
 name: ElementalCoreWeaponSystem
 version: 1.0.0
 main: com.sdmine.elementalcore.ElementalCorePlugin
-api-version: '1.20'
+api-version: '1.21'
 author: SD MINE
 description: Elemental Core Weapon System - modular socket-based elemental weapons inspired by Tensura.
 softdepend: [ExecutableItems, SCore]

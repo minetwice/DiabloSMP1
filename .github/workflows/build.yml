@@ -17,11 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup JDK 17
+      - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - name: Install Gradle 8.5
         run: |
@@ -43,8 +43,7 @@ jobs:
           script: |
             const fs = require('fs');
             const output = fs.readFileSync('/tmp/gradle-output.log', 'utf8');
-            const allLines = output.split("\n");
-            // Extract lines that contain compilation errors
+            const allLines = output.split('\n');
             const errorLines = allLines.filter(l =>
               l.includes("error:") ||
               l.includes("FAILED") ||
@@ -54,7 +53,7 @@ jobs:
               l.includes("warning:") ||
               l.includes(".java:")
             );
-            const result = errorLines.length > 0 ? errorLines.join("\n") : allLines.slice(0, 100).join("\n");
+            const result = errorLines.length > 0 ? errorLines.join('\n') : allLines.slice(0, 100).join('\n');
             await github.rest.repos.createCommitComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
